@@ -36,7 +36,7 @@ map("n", "<C-k>", "<cmd>cnext<CR>zz")
 map("n", "<C-j>", "<cmd>cprev<CR>zz")
 
 -- this is for plugins pls organize it better when u can
-map({ "n", "x" }, "<leader>fm", function()
-	require("conform").format({ lsp_fallback = true })
-end, { desc = "general format file" })
-map("n", "<leader>e", "<cmd>NvimTreeFocus<CR>", { desc = "nvimtree focus window" })
+-- map({ "n", "x" }, "<leader>fm", function()
+-- 	require("conform").format({ lsp_fallback = true })
+-- end, { desc = "general format file" })
+-- map("n", "<leader>e", "<cmd>NvimTreeFocus<CR>", { desc = "nvimtree focus window" })
