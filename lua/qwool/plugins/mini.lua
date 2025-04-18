@@ -32,34 +32,34 @@ return {
 	{ "echasnovski/mini.icons", opts = {} },
 	-- { "echasnovski/mini.pairs", opts = {} },
 	{ "echasnovski/mini.tabline", opts = {} },
-	-- {
-	-- 	"echasnovski/mini.files",
-	-- 	opts = {
-	-- 		options = {
-	-- 			use_as_default_explorer = true,
-	-- 		},
-	-- 		mappings = {
-	-- 			go_in = "L",
-	-- 			go_in_plus = "l",
-	-- 		},
-	-- 	},
-	-- 	keys = {
-	-- 		{
-	-- 			"<leader>e",
-	-- 			function()
-	-- 				require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
-	-- 			end,
-	-- 			desc = "Open mini.files (Directory of Current File)",
-	-- 		},
-	-- 		{
-	-- 			"<leader>E",
-	-- 			function()
-	-- 				require("mini.files").open(vim.uv.cwd(), true)
-	-- 			end,
-	-- 			desc = "Open mini.files (cwd)",
-	-- 		},
-	-- 	},
-	-- },
+	{
+		"echasnovski/mini.files",
+		opts = {
+			options = {
+				use_as_default_explorer = true,
+			},
+			mappings = {
+				go_in = "L",
+				go_in_plus = "l",
+			},
+		},
+		keys = {
+			{
+				"<leader>e",
+				function()
+					require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
+				end,
+				desc = "Open mini.files (Directory of Current File)",
+			},
+			{
+				"<leader>E",
+				function()
+					require("mini.files").open(vim.uv.cwd(), true)
+				end,
+				desc = "Open mini.files (cwd)",
+			},
+		},
+	},
 
 	{
 		"echasnovski/mini.statusline",
