@@ -1,5 +1,8 @@
 local o = vim.o
 
+-- o.termguicolors = true
+-- o.background = "dark"
+-- vim.cmd.colorscheme("base16-default-dark")
 o.number = true
 o.relativenumber = true
 o.signcolumn = "yes"

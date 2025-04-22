@@ -6,16 +6,35 @@ return {
 	},
 
 	config = function()
-		require("telescope").setup({})
+		local actions = require("telescope.actions")
+		require("telescope").setup({
+			defaults = {
+				mappings = {
+					i = {
+						["qq"] = actions.close, -- lmao
+						["<esc>"] = actions.close,
+					},
+				},
+			},
+		})
 
+		local map = vim.keymap.set
 		local builtin = require("telescope.builtin")
-		vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "find files" })
-		vim.keymap.set("n", "<leader>fr", builtin.builtin, { desc = "telescope help" })
-		vim.keymap.set("n", "<leader>fg", builtin.command_history, { desc = "cmd history" })
-		vim.keymap.set("n", "<leader>fd", builtin.diagnostics, { desc = "diagnostics" })
-		vim.keymap.set("n", "<leader>fe", builtin.live_grep, { desc = "live grep" })
-		vim.keymap.set("n", "<leader><Tab>", builtin.buffers, { desc = "find open buffers" })
-		vim.keymap.set("n", "<leader>fc", function()
+
+		-- map("n", "<leader>fg", builtin.command_history, { desc = "cmd history" })
+		-- map("n", "<leader>fd", builtin.diagnostics, { desc = "diagnostics" })
+		-- map("n", "fR", builtin.lsp_references, { desc = "lsp ref" })
+		-- map("n", "fd", builtin.lsp_definitions, { desc = "definitions" })
+		-- map("n", "fi", builtin.lsp_implementations, { desc = "implementations" })
+		-- map("n", "ft", builtin.lsp_type_definitions, { desc = "type defs" })
+		--
+		map("n", "<leader>t", builtin.builtin, { desc = "telescope help" })
+		map("n", "<leader>d", "<cmd>Telescope diagnostics bufnr=0<cr>", { desc = "buffer diagnostics" })
+		map("n", "<leader>f", builtin.find_files, { desc = "find files" })
+		map("n", "<leader>?", builtin.keymaps, { desc = "keymaps" })
+		map("n", "<leader>/", builtin.live_grep, { desc = "live grep" })
+		map("n", "<leader><Tab>", builtin.buffers, { desc = "find open buffers" })
+		map("n", "<leader>,", function()
 			builtin.find_files({
 				cwd = vim.fn.stdpath("config"),
 			})

@@ -1,4 +1,5 @@
 return {
+	"nvim-lua/plenary.nvim",
 	{
 		"folke/which-key.nvim",
 		event = "VeryLazy",
@@ -9,18 +10,6 @@ return {
 			}, { prefix = "<leader>" })
 		end,
 	},
-	-- {
-	--     "luukvbaal/nnn.nvim",
-	--     opts = {
-	--         replace_netrw = "explorer"
-	--     }
-	-- },
-	-- {
-	-- 	"lukas-reineke/indent-blankline.nvim",
-	-- 	main = "ibl",
-	-- 	opts = {
-	-- 		indent = { char = "│" },
-	-- 		scope = { char = "│" },
-	-- 	},
-	-- }
+
+	"vuciv/golf",
 }
