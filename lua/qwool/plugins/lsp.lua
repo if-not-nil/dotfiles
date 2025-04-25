@@ -3,6 +3,12 @@ return {
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
 		"hrsh7th/cmp-nvim-lsp",
+		{
+			"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+			config = function()
+				require("lsp_lines").setup()
+			end,
+		},
 		{ "antosha417/nvim-lsp-file-operations", config = true },
 		{
 			"folke/lazydev.nvim",
@@ -30,6 +36,17 @@ return {
 					capabilities = capabilities,
 				})
 			end,
+		})
+
+		vim.diagnostic.config({
+			-- update_in_insert = true,
+			virtual_text = true,
+			float = {
+				style = "minimal",
+				source = "always",
+				header = "",
+				prefix = "",
+			},
 		})
 
 		vim.api.nvim_create_autocmd({ "CursorHold" }, {

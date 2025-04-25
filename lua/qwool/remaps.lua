@@ -29,10 +29,19 @@ map("n", "<Esc>", "<cmd>noh<CR>", { desc = "clear search highlights" })
 map({ "n", "x" }, ";", ":")
 
 -- run task
-vim.keymap.set("n", "<leader>r", function()
+vim.keymap.set("n", "<leader>R", function()
 	local output = vim.fn.system("./task.sh")
 	vim.notify(output, vim.log.levels.INFO, { title = "task.sh Output" })
 end, { desc = "run task.sh and show output" })
+
+-- replace without jumping all over
+vim.api.nvim_create_user_command("S", function(opts)
+	vim.cmd("keepjumps s" .. opts.args)
+end, {
+	nargs = "*",
+	range = true,
+})
+
 -- map({ "n", "x" }, "<leader>e", ":NnnPicker<cr>", { desc = "file picker" })
 -- map("n", "<leader>?", "<cmd>Pick oldfiles<cr>", { desc = "search file history" })
 -- map("n", "<leader><space>", "<cmd>Pick buffers<cr>", { desc = "search open buffers" })

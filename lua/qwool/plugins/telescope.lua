@@ -8,6 +8,7 @@ return {
 	config = function()
 		local actions = require("telescope.actions")
 		require("telescope").setup({
+			file_ignore_patterns = { "node_modules" },
 			defaults = {
 				mappings = {
 					i = {
@@ -31,8 +32,8 @@ return {
 		map("n", "<leader>t", builtin.builtin, { desc = "telescope help" })
 		map("n", "<leader>d", "<cmd>Telescope diagnostics bufnr=0<cr>", { desc = "buffer diagnostics" })
 		map("n", "<leader>f", builtin.find_files, { desc = "find files" })
-		map("n", "<leader>?", builtin.keymaps, { desc = "keymaps" })
-		map("n", "<leader>/", builtin.live_grep, { desc = "live grep" })
+		map("n", "<leader>?", builtin.keymaps, { desc = "keymaps" }) -- mneminoc: huh?
+		map("n", "<leader>r", builtin.live_grep, { desc = "live grep" }) -- mnemonic: RipgRep
 		map("n", "<leader><Tab>", builtin.buffers, { desc = "find open buffers" })
 		map("n", "<leader>,", function()
 			builtin.find_files({

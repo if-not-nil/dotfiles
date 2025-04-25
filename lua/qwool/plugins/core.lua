@@ -12,4 +12,5 @@ return {
 	},
 
 	"vuciv/golf",
+	{ "norcalli/nvim-colorizer.lua", opts = { "css", "html", "tsx", "jsx" } },
 }

@@ -2,7 +2,7 @@ return {
 	"hrsh7th/nvim-cmp",
 	event = "InsertEnter",
 	dependencies = {
-		"tailwind-tools",
+
 		"hrsh7th/cmp-buffer", -- source for text in buffer
 		"hrsh7th/cmp-path", -- source for file system paths
 
@@ -67,7 +67,6 @@ return {
 			-- formatting options for lspkind (vscode-like pictograms)
 			formatting = {
 				format = lspkind.cmp_format({
-					before = require("tailwind-tools.cmp").lspkind_format, -- tailwind css completion support
 					maxwidth = 50, -- maximum width of completion item
 					ellipsis_char = "...", -- truncate with ellipsis
 				}),
