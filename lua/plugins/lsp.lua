@@ -1,8 +1,8 @@
 return {
+
 	"neovim/nvim-lspconfig",
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
-		"hrsh7th/cmp-nvim-lsp",
 		{
 			"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
 			config = function()
@@ -16,18 +16,33 @@ return {
 			opts = {},
 		},
 	},
-	config = function()
-		-- import lspconfig plugin
+	opts = {
+		servers = {
+			lua_ls = {},
+		},
+	},
+	config = function(_, opts)
 		local lspconfig = require("lspconfig")
+		for server, config in pairs(opts.servers) do
+			-- passing config.capabilities to blink.cmp merges with the capabilities in your
+			-- `opts[server].capabilities, if you've defined it
+			config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
+			lspconfig[server].setup(config)
+		end
+		-- import lspconfig plugin
 
 		-- import mason_lspconfig plugin
 		local mason_lspconfig = require("mason-lspconfig")
 
-		-- import cmp-nvim-lsp plugin
-		local cmp_nvim_lsp = require("cmp_nvim_lsp")
-
-		-- used to enable autocompletion (assign to every lsp server config)
-		local capabilities = cmp_nvim_lsp.default_capabilities()
+		local capabilities = {
+			textDocument = {
+				foldingRange = {
+					dynamicRegistration = false,
+					lineFoldingOnly = true,
+				},
+			},
+		}
+		capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
 
 		mason_lspconfig.setup_handlers({
 			-- default handler for installed servers
@@ -40,10 +55,10 @@ return {
 
 		vim.diagnostic.config({
 			-- update_in_insert = true,
-			virtual_text = true,
+			-- virtual_text = true,
 			float = {
 				style = "minimal",
-				source = "always",
+				-- source = "always",
 				header = "",
 				prefix = "",
 			},

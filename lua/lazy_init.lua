@@ -15,7 +15,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	spec = {
 		-- import your plugins
-		{ import = "qwool.plugins" },
+		{ import = "plugins" },
 	},
 	-- automatically check for plugin updates
 	change_detection = { notify = false },

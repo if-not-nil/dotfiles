@@ -11,7 +11,7 @@ return {
 		-- indent = { enabled = true, only_scope = true, animate = { enabled = false } },
 		quickfile = { enabled = true },
 		-- scope = { enabled = true, underline = true },
-		statuscolumn = { enabled = true },
+		-- statuscolumn = { enabled = true },
 		-- explorer = { enabled = true, replace_netrw = true },
 	},
 }

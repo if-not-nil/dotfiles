@@ -1,1 +1,1 @@
-require("qwool.init")
+require("init")

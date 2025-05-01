@@ -1,13 +1,13 @@
 {
-  "runtime.version": "LuaJIT",
-  "runtime.path": [
-    "lua/?.lua",
-    "lua/?/init.lua"
-  ],
-  "diagnostics.globals": ["vim"],
-  "workspace.checkThirdParty": false,
-  "workspace.library": [
-    "$VIMRUNTIME",
-    "${3rd}/luv/library"
-  ]
+    "diagnostics.globals": [
+        "vim",
+        "get_python_path",
+        "listDiagnostics",
+        "leave_snippet"
+    ],
+    "diagnostics.disable": [
+        "undefined-field",
+        "missing-fields",
+        "redundant-parameter"
+    ]
 }

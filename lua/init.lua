@@ -1,0 +1,5 @@
+require("remaps")
+require("opts")
+require("lazy_init")
+require("autocmds")
+-- vim.cmd([[colorscheme cosec-twilight]])
