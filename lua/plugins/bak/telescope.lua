@@ -29,16 +29,17 @@ return {
 		-- map("n", "fi", builtin.lsp_implementations, { desc = "implementations" })
 		-- map("n", "ft", builtin.lsp_type_definitions, { desc = "type defs" })
 		--
-		map("n", "<leader>t", builtin.builtin, { desc = "telescope help" })
-		map("n", "<leader>d", "<cmd>Telescope diagnostics bufnr=0<cr>", { desc = "buffer diagnostics" })
-		map("n", "<leader>f", builtin.find_files, { desc = "find files" })
-		map("n", "<leader>?", builtin.keymaps, { desc = "keymaps" }) -- mneminoc: huh?
-		map("n", "<leader>r", builtin.live_grep, { desc = "live grep" }) -- mnemonic: RipgRep
-		map("n", "<leader><Tab>", builtin.buffers, { desc = "find open buffers" })
-		map("n", "<leader>,", function()
-			builtin.find_files({
-				cwd = vim.fn.stdpath("config"),
-			})
-		end, { desc = "find in cfg" })
+		-- map("n", "<leader>t", builtin.builtin, { desc = "telescope help" })
+		-- map("n", "<leader>d", "<cmd>Telescope diagnostics bufnr=0<cr>", { desc = "buffer diagnostics" })
+		-- map("n", "<leader>f", builtin.find_files, { desc = "find files" })
+		-- map("n", "<leader>s", builtin.lsp_document_symbols, { desc = "lsp document symbols" })
+		-- map("n", "<leader>?", builtin.keymaps, { desc = "keymaps" }) -- mneminoc: huh?
+		-- map("n", "<leader>r", builtin.live_grep, { desc = "live grep" }) -- mnemonic: RipgRep
+		-- map("n", "<leader><Tab>", builtin.buffers, { desc = "find open buffers" })
+		-- map("n", "<leader>,", function()
+		-- 	builtin.find_files({
+		-- 		cwd = vim.fn.stdpath("config"),
+		-- 	})
+		-- end, { desc = "find in cfg" })
 	end,
 }

@@ -29,11 +29,21 @@ map("n", "<C-k>", "<cmd>cnext<CR>zz", { desc = "next quickfix item" })
 map("n", "<C-j>", "<cmd>cprev<CR>zz", { desc = "previous quickfix item" })
 
 map("n", "<Esc>", "<cmd>noh<CR>", { desc = "clear search highlights" })
-map({ "n", "x" }, ";", ":")
-map({ "n", "x" }, ":", ";")
+
+-- Swap : and ; functionality
+vim.keymap.set({ "n", "x" }, ";", ":", { noremap = true, desc = "Enter command mode" })
+vim.keymap.set({ "n", "x" }, ":", ";", { noremap = true, desc = "Repeat last f/F/t/T" })
 
 -- run task
-vim.keymap.set("n", "<leader>R", function()
-	local output = vim.fn.system("make")
-	vim.notify(output, vim.log.levels.INFO, { title = "make output" })
-end, { desc = "run make and show output" })
+
+vim.keymap.set("n", "<leader>r", function()
+	local ext = vim.fn.expand("%:e")
+	local output
+	if ext == "py" then
+		output = vim.fn.system("pytest main.py")
+		-- vim.notify(output, vim.log.levels.INFO, { title = "pytest output" })
+	else
+		output = vim.fn.system("task")
+		-- vim.notify(output, vim.log.levels.INFO, { title = "task output" })
+	end
+end, { silent = false, desc = "Run pytest or task based on file type" })

@@ -1,67 +1,35 @@
 return {
 
-	{ "echasnovski/mini.comment", opts = {} },
 	-- { "echasnovski/mini.starter", opts = {} },
-	{ "echasnovski/mini.surround", opts = {} },
-
-	{ "echasnovski/mini.bufremove", opts = {} },
-	{ "echasnovski/mini.snippets", opts = {} },
-	{ "echasnovski/mini.icons", opts = {} },
+	-- { "echasnovski/mini.snippets", opts = {} },
 	-- { "echasnovski/mini.pairs", opts = {} },
-	-- {
-	-- 	"echasnovski/mini.files",
-	-- 	opts = {
-	-- 		options = {
-	-- 			use_as_default_explorer = true,
-	-- 		},
-	-- 		mappings = {
-	-- 			go_in = "L",
-	-- 			go_in_plus = "l",
-	-- 		},
-	-- 	},
-	-- 	keys = {
-	-- 		{
-	-- 			"<leader>e",
-	-- 			function()
-	-- 				require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
-	-- 			end,
-	-- 			desc = "Open mini.files (Directory of Current File)",
-	-- 		},
-	-- 		{
-	-- 			"<leader>E",
-	-- 			function()
-	-- 				require("mini.files").open(vim.uv.cwd(), true)
-	-- 			end,
-	-- 			desc = "Open mini.files (cwd)",
-	-- 		},
-	-- 	},
-	-- },
-
+	-- { "echasnovski/mini.comment", opts = {} },
+	-- { "echasnovski/mini.bufremove", opts = {} },
+	-- { "echasnovski/mini.files", opts = {} },
+	{ "echasnovski/mini.surround", opts = {} },
+	{ "echasnovski/mini.icons", opts = {} },
 	{ "echasnovski/mini.tabline", opts = {} },
-	-- {
-	-- 	"echasnovski/mini.statusline",
-	-- 	opts = {
-	-- 		content = {
-	-- 			active = function()
-	-- 				local mode, mode_hl = require("mini.statusline").section_mode({ trunc_width = 20 })
-	-- 				local diagnostics = require("mini.statusline").section_diagnostics({ trunc_width = 75 })
-	-- 				local lsp = require("mini.statusline").section_lsp({ icon = "LSP", trunc_width = 75 })
-	-- 				local filename = require("mini.statusline").section_filename({ trunc_width = 140 })
-	-- 				local percent = "%2p%%"
-	-- 				local location = "%3l:%-2c"
-	--
-	-- 				return require("mini.statusline").combine_groups({
-	-- 					{ hl = mode_hl, strings = { string.sub(string.upper(mode), 0, 3) } },
-	-- 					{ hl = "MiniStatuslineDevinfo", strings = { diagnostics, lsp } },
-	-- 					"%<",
-	-- 					{ hl = "MiniStatuslineFilename", strings = { filename } },
-	-- 					"%=",
-	-- 					{ hl = "MiniStatuslineFilename", strings = { "%{&filetype}" } },
-	-- 					{ hl = "MiniStatuslineFileinfo", strings = { percent } },
-	-- 					{ hl = mode_hl, strings = { location } },
-	-- 				})
-	-- 			end,
-	-- 		},
-	-- 	},
-	-- },
+	{
+		"echasnovski/mini.base16",
+		opts = {
+			palette = {
+				base00 = "#101010",
+				base01 = "#202020",
+				base02 = "#2b2b2b",
+				base03 = "#505050",
+				base04 = "#b0b0b0",
+				base05 = "#d0d0d0",
+				base06 = "#e0e0e0",
+				base07 = "#fafafa",
+				base08 = "#ab4642",
+				base09 = "#dc9656",
+				base0A = "#f7ca88",
+				base0B = "#a1b56c",
+				base0C = "#86c1b9",
+				base0D = "#7cafc2",
+				base0E = "#ba8baf",
+				base0F = "#a16946",
+			},
+		},
+	},
 }

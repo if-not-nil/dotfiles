@@ -1,6 +1,6 @@
 local o = vim.o
 
--- o.termguicolors = true
+o.termguicolors = true
 -- o.background = "dark"
 -- vim.cmd.colorscheme("base16-default-dark")
 o.number = true
@@ -18,9 +18,9 @@ o.incsearch = true
 
 o.autoindent = true
 o.smartindent = true
-o.tabstop = 4
-o.softtabstop = 4
-o.shiftwidth = 4
+o.tabstop = 2
+o.softtabstop = 2
+o.shiftwidth = 2
 o.expandtab = true
 
 o.numberwidth = 3

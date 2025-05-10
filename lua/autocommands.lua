@@ -36,10 +36,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		map("n", "fD", vim.lsp.buf.declaration, "go to declaration")
 		map("i", "<C-h>", vim.lsp.buf.signature_help, "show signature help")
 		map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, "see available code actions")
-		map("n", "<leader>rn", vim.lsp.buf.rename, "smart rename")
-		map("n", "[d", vim.diagnostic.goto_prev, "go to previous diagnostic")
-		map("n", "]d", vim.diagnostic.goto_next, "go to next diagnostic")
-		map("n", "<leader>rs", "<cmd>LspRestart<CR>", "restart lsp")
+		-- map("n", "<leader>rn", vim.lsp.buf.rename, "smart rename")
+		-- map("n", "[d", vim.diagnostic.goto_prev, "go to previous diagnostic")
+		-- map("n", "]d", vim.diagnostic.goto_next, "go to next diagnostic")
+		-- map("n", "<leader>rs", "<cmd>LspRestart<CR>", "restart lsp")
 	end,
 })
 

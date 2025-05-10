@@ -8,15 +8,13 @@ return {
 	},
 	keys = {
 		{
-			"<leader>E",
-			"<cmd>Yazi cwd<cr>",
-			desc = "Resume the last yazi session",
-		},
-		{
 			"<leader>e",
 			"<cmd>Yazi toggle<cr>",
-			desc = "Resume the last yazi session",
 		},
+		-- {
+		-- 	"<leader>E",
+		-- 	"<cmd>Yazi cwd<cr>",
+		-- },
 	},
 	opts = {
 		-- if you want to open yazi instead of netrw, see below for more info
