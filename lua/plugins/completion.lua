@@ -8,14 +8,6 @@ return {
 		keymap = {
 			preset = "default",
 			["<Tab>"] = {
-				---@diagnostic disable-next-line: unused-local
-				function(cmp)
-					local ok, supermaven = pcall(require, "supermaven-nvim.completion_preview")
-					if ok and supermaven.has_suggestion() then
-						vim.schedule(supermaven.on_accept_suggestion)
-						return true
-					end
-				end,
 				"select_next",
 				"fallback",
 			},
@@ -37,22 +29,35 @@ return {
 			},
 		},
 		completion = {
-			menu = {
-				scrollbar = false,
-				draw = {
-					columns = {
-						{ "kind_icon" },
-						{ "label", "label_description", gap = 1 },
-						{ "kind", gap = 1 },
-						{ "label_description", gap = 1 },
-						{ "source_name", gap = 1 },
-					},
-				},
-			},
+			-- list = { selection = { preselect = false }, cycle = { from_top = false } },
 			documentation = {
 				auto_show = true,
 				window = {
 					border = "single",
+				},
+			},
+			menu = {
+				draw = {
+					components = {
+						kind_icon = {
+							text = function(ctx)
+								local kind_icon, _, _ = require("mini.icons").get("lsp", ctx.kind)
+								return kind_icon
+							end,
+							-- (optional) use highlights from mini.icons
+							highlight = function(ctx)
+								local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
+								return hl
+							end,
+						},
+						kind = {
+							-- (optional) use highlights from mini.icons
+							highlight = function(ctx)
+								local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
+								return hl
+							end,
+						},
+					},
 				},
 			},
 		},

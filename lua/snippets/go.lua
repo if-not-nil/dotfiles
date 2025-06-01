@@ -11,6 +11,10 @@ return {
 		t({ "", "}" }),
 	}),
 
+	s("auth", {
+		t({ 'auth := c.Get("auth").(middleware.Auth)', "user := auth.User" }),
+	}),
+
 	s("foot", {
 		t('w.Header().Set("Content-Type", "application/json")'),
 	}),

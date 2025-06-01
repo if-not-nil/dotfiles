@@ -7,8 +7,8 @@ return {
 		opts = {},
 	},
 
-	{ "norcalli/nvim-colorizer.lua", opts = { "css", "html", "tsx", "jsx", "svelte" } },
-	{ "windwp/nvim-ts-autotag", opts = {} },
+	-- { "norcalli/nvim-colorizer.lua", opts = { "css", "html", "tsx", "jsx", "svelte" } },
+	{ "windwp/nvim-ts-autotag" },
 	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",

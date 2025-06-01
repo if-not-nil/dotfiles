@@ -8,12 +8,11 @@ return {
 			typescript = { "biome", "prettier", stop_after_first = true },
 			javascriptreact = { "biome", "prettier", stop_after_first = true },
 			typescriptreact = { "biome", stop_after_first = true },
+			zls = { "", stop_after_first = true },
 			-- python = { "ruff" },
 		},
-		format_on_save = {
-			lsp_fallback = true,
-			async = false,
-			timeout_ms = 1000,
+		format_after_save = {
+			lsp_format = "fallback",
 		},
 	},
 }

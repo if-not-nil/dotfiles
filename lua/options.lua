@@ -1,35 +1,38 @@
-local o = vim.o
+local opt = vim.opt
 
-o.termguicolors = true
+opt.termguicolors = true
+vim.cmd("colorscheme retrobox")
 -- o.background = "dark"
--- vim.cmd.colorscheme("base16-default-dark")
-o.number = true
-o.relativenumber = true
-o.signcolumn = "yes"
-o.showmode = false
-o.termguicolors = true
-o.scrolloff = 5
-vim.opt.shortmess:append("A")
+opt.number = true
+opt.relativenumber = true
+opt.signcolumn = "yes"
+opt.showmode = false
+opt.scrolloff = 5
+opt.splitbelow = false
+opt.shortmess:append("A")
+opt.shada = { "'10", "<0", "s10", "h" }
 
-o.ignorecase = true
-o.smartcase = true
-o.hlsearch = false
-o.incsearch = true
+opt.ignorecase = true
+opt.smartcase = true
+opt.hlsearch = false
+opt.incsearch = true
+opt.inccommand = "split"
 
-o.autoindent = true
-o.smartindent = true
-o.tabstop = 2
-o.softtabstop = 2
-o.shiftwidth = 2
-o.expandtab = true
+opt.autoindent = true
+opt.smartindent = true
+opt.tabstop = 2
+opt.shiftwidth = 2
+opt.expandtab = true
 
-o.numberwidth = 3
+-- o.titlestring = '%t%( %M%)%( (%{expand("%:~:h")})%)%a (nvim)'
 
-o.swapfile = false
-o.backup = false
-o.undofile = true
-o.undodir = vim.fn.stdpath("data") .. "/undo"
+-- it wont add comments
+opt.formatoptions:remove("o")
+opt.swapfile = false
+opt.backup = false
+opt.undofile = true
+opt.undodir = vim.fn.stdpath("data") .. "/undo"
 
-o.updatetime = 250
-o.timeoutlen = 1000 -- im getting old
-o.clipboard = "unnamedplus"
+opt.updatetime = 250
+opt.timeoutlen = 1000 -- im getting old
+opt.clipboard = "unnamedplus"

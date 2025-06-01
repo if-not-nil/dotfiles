@@ -8,8 +8,9 @@ return {
 		-- refer to the configuration section below
 		bigfile = { enabled = true },
 		-- dashboard = { enabled = true },
-		indent = { enabled = false, only_scope = true, animate = { enabled = false } },
+		indent = { enabled = true, only_scope = true, animate = { enabled = false } },
 		quickfile = { enabled = true },
+		-- notifier = { enabled = true },
 		picker = {
 			enabled = true,
 			win = {
@@ -33,56 +34,56 @@ return {
 				Snacks.lazygit()
 			end,
 		},
-		{
-			"<leader>/",
-			function()
-				Snacks.picker.grep()
-			end,
-		},
-		{
-			"<leader><Tab>",
-			function()
-				Snacks.picker.buffers()
-			end,
-			desc = "Buffers",
-		},
-		{
-			"<leader>,",
-			function()
-				Snacks.picker.files({ cwd = vim.fn.stdpath("config") })
-			end,
-			desc = "Find Config File",
-		},
-		{
-			"<leader>f",
-			function()
-				Snacks.picker.files()
-			end,
-			desc = "Find Files",
-		},
-		{
-			"<leader>?",
-			function()
-				Snacks.picker.keymaps()
-			end,
-			desc = "maps",
-		},
-
-		{
-			"<leader>d",
-			function()
-				Snacks.picker.diagnostics_buffer()
-			end,
-			desc = "Buffer Diagnostics",
-		},
-
-		{
-			"<leader>h",
-			function()
-				Snacks.picker.pickers()
-			end,
-			desc = "ls pickers",
-		},
+		-- {
+		-- 	"<leader>/",
+		-- 	function()
+		-- 		Snacks.picker.grep()
+		-- 	end,
+		-- },
+		-- {
+		-- 	"<leader><Tab>",
+		-- 	function()
+		-- 		Snacks.picker.buffers()
+		-- 	end,
+		-- 	desc = "Buffers",
+		-- },
+		-- {
+		-- 	"<leader>,",
+		-- 	function()
+		-- 		Snacks.picker.files({ cwd = vim.fn.stdpath("config") })
+		-- 	end,
+		-- 	desc = "Find Config File",
+		-- },
+		-- {
+		-- 	"<leader>f",
+		-- 	function()
+		-- 		Snacks.picker.files()
+		-- 	end,
+		-- 	desc = "Find Files",
+		-- },
+		-- {
+		-- 	"<leader>?",
+		-- 	function()
+		-- 		Snacks.picker.keymaps()
+		-- 	end,
+		-- 	desc = "maps",
+		-- },
+		--
+		-- {
+		-- 	"<leader>d",
+		-- 	function()
+		-- 		Snacks.picker.diagnostics_buffer({ layout = "vertical" })
+		-- 	end,
+		-- 	desc = "Buffer Diagnostics",
+		-- },
+		--
+		-- {
+		-- 	"<leader>h",
+		-- 	function()
+		-- 		Snacks.picker.pickers()
+		-- 	end,
+		-- 	desc = "ls pickers",
+		-- },
 		{
 			"<leader>b",
 			function()
