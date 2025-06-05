@@ -1,0 +1,7 @@
+[plugin]
+deps = []
+
+[[flavor.deps]]
+use = "gosxrgxx/flexoki-dark"
+rev = "3e8cfba"
+hash = "56a96293138f09da7fae25ee405a4393"
