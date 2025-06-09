@@ -24,7 +24,6 @@ space = "none"
 "," = "repeat_last_motion"
 ";" = "command_mode"
 C-s = ":w" # Maps Ctrl-s to the typable command :w which is an alias for :write (save file)
-C-o = ":open ~/.config/helix/config.toml" # Maps Ctrl-o to opening of the helix config file
 tab = ":bn"
 S-tab = ":bp"
 "S-k" = "hover"

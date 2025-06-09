@@ -6,7 +6,7 @@ return {
 	---@module 'blink.cmp'
 	opts = {
 		keymap = {
-			preset = "default",
+			preset = "none",
 			["<Tab>"] = {
 				"select_next",
 				"fallback",
@@ -29,7 +29,7 @@ return {
 			},
 		},
 		completion = {
-			-- list = { selection = { preselect = false }, cycle = { from_top = false } },
+			list = { selection = { preselect = false } },
 			documentation = {
 				auto_show = true,
 				window = {

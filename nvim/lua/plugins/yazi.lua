@@ -11,10 +11,10 @@ return {
 			"<leader>e",
 			"<cmd>Yazi toggle<cr>",
 		},
-		-- {
-		-- 	"<leader>E",
-		-- 	"<cmd>Yazi cwd<cr>",
-		-- },
+		{
+			"<leader>E",
+			"<cmd>Yazi cwd<cr>",
+		},
 	},
 	opts = {
 		-- if you want to open yazi instead of netrw, see below for more info

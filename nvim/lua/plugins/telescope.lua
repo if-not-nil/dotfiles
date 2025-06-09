@@ -24,13 +24,13 @@ return {
 
 		-- map("n", "<leader>fg", builtin.command_history, { desc = "cmd history" })
 		map("n", "<leader>d", builtin.diagnostics, { desc = "diagnostics" })
-		map("n", "fR", builtin.lsp_references, { desc = "lsp ref" })
+		map("n", "<leader>r", builtin.lsp_references, { desc = "lsp ref" })
 		map("n", "<leader>ll", builtin.commands, { desc = "commands" })
-		map("n", "fd", builtin.lsp_definitions, { desc = "definitions" })
-		map("n", "fi", builtin.lsp_implementations, { desc = "implementations" })
-		map("n", "ft", builtin.lsp_type_definitions, { desc = "type defs" })
+		map("n", "<leader>D", builtin.lsp_definitions, { desc = "definitions" })
+		-- map("n", "<leader>i", builtin.lsp_implementations, { desc = "implementations" })
+		-- map("n", "<leader>t", builtin.lsp_type_definitions, { desc = "type defs" })
 		--
-		map("n", "<leader>t", builtin.builtin, { desc = "telescope help" })
+		map("n", "<leader>tt", builtin.builtin, { desc = "telescope help" })
 		map("n", "<leader>d", "<cmd>Telescope diagnostics bufnr=0<cr>", { desc = "buffer diagnostics" })
 		map("n", "<leader>f", builtin.find_files, { desc = "find files" })
 		map("n", "<leader>s", builtin.lsp_document_symbols, { desc = "lsp document symbols" })

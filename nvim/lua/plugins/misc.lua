@@ -7,11 +7,22 @@ return {
 		opts = {},
 	},
 
-	-- { "norcalli/nvim-colorizer.lua", opts = { "css", "html", "tsx", "jsx", "svelte" } },
-	{ "windwp/nvim-ts-autotag" },
 	{
-		"windwp/nvim-autopairs",
-		event = "InsertEnter",
-		config = true,
+		"mbbill/undotree",
+		config = function()
+			vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+		end,
+	},
+	--
+	-- colorizer
+	{
+		"uga-rosa/ccc.nvim",
+		opts = {
+			highlighter = {
+				auto_enable = true,
+				lsp = true,
+				enabled = { "css", "html", "tsx", "jsx", "svelte" },
+			},
+		},
 	},
 }

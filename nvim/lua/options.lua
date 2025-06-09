@@ -1,8 +1,8 @@
 local opt = vim.opt
 
 opt.termguicolors = true
-vim.cmd("colorscheme retrobox")
 -- o.background = "dark"
+-- vim.cmd.colorscheme("retrobox")
 opt.number = true
 opt.relativenumber = true
 opt.signcolumn = "yes"
