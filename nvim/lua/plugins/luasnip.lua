@@ -9,8 +9,8 @@ return {
 		require("luasnip.loaders.from_vscode").lazy_load({ paths = vim.g.vscode_snippets_path or "" })
 
 		require("luasnip.loaders.from_lua").load({ paths = { "~/.config/nvim/lua/snippets" } })
-		require("luasnip").filetype_extend("python", { "django" })
-		require("luasnip").filetype_extend("html", { "djangohtml" })
+		-- require("luasnip").filetype_extend("python", { "django" })
+		-- require("luasnip").filetype_extend("html", { "djangohtml" })
 		vim.api.nvim_create_autocmd("InsertLeave", {
 			callback = function()
 				if

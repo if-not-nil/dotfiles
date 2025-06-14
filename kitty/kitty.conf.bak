@@ -1,3 +1,4 @@
+# vim: filetype=config
 enable_audio_bell no
 # config editing
 map shift+cmd+, load_config_file
@@ -14,12 +15,14 @@ map cmd+p kitten start_session.py "~/.config/kitty/start_session.py"
 map cmd+l next_layout
 map cmd+w close_window
 map cmd+/ layout_action mirror toggle
+map cmd+t new_tab_with_cwd
 
-macos_quit_when_last_window_closed no
+macos_quit_when_last_window_closed yes
 map cmd+ctrl+t launch --type=background kitty --session web.session
 
 # window is tiled window, not os window, not tab
 enabled_layouts tall,fat
+# hide_window_decorations titlebar-only
 window_padding_width 0
 window_margin_width 0
 
@@ -37,13 +40,15 @@ font_size 18.0
 
 macos_option_as_alt true
 
+# cursor_trail 1
+# cursor_trail_start_threshold 8
 tab_bar_style separator
 tab_bar_edge bottom
 tab_separator ""
 tab_title_template " {bell_symbol}{activity_symbol}{index}: {title} "
 
 # BEGIN_KITTY_FONTS
-font_family      family="Maple Mono NL NF"
+font_family      family="Maple Mono Normal NL NF"
 bold_font        auto
 italic_font      auto
 bold_italic_font auto

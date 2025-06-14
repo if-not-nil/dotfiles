@@ -13,6 +13,25 @@ return {
 		},
 		opts = {
 			servers = {
+				lua_ls = {
+					settings = {
+						Lua = {
+							diagnostics = {
+								globals = { "vim" }, -- Recognize 'vim' as a global variable
+							},
+							workspace = {
+								library = {
+									vim.api.nvim_get_runtime_file("", true),
+									"${3rd}/love2d/library",
+									"${3rd}/amulet/library",
+								}, -- Include Neovim runtime files
+							},
+							telemetry = {
+								enable = false,
+							},
+						},
+					},
+				},
 				zls = {
 					settings = {
 						zls = {
@@ -75,28 +94,6 @@ return {
 			},
 		},
 		config = function(_, opts)
-			local on_attach = function(client, bufnr)
-				--- Only Neovim 0.7
-				if client.resolved_capabilities.code_lens then
-					local codelens = vim.api.nvim_create_augroup("LSPCodeLens", { clear = true })
-					vim.api.nvim_create_autocmd({ "BufEnter" }, {
-						group = codelens,
-						callback = function()
-							vim.lsp.codelens.refresh()
-						end,
-						buffer = bufnr,
-						once = true,
-					})
-					vim.api.nvim_create_autocmd({ "BufWritePost", "CursorHold" }, {
-						group = codelens,
-						callback = function()
-							vim.lsp.codelens.refresh()
-						end,
-						buffer = bufnr,
-					})
-				end
-			end
-
 			local lspconfig = require("lspconfig")
 			for server, config in pairs(opts.servers) do
 				-- passing config.capabilities to blink.cmp merges with the capabilities in your

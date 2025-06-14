@@ -15,18 +15,21 @@ if status is-interactive
   set -gx PATH /opt/homebrew/bin/ $PATH
   set -gx PATH ~/.bun/bin/ $PATH
   set -gx PATH ~/.local/bin $PATH
+  set -gx PATH $HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin $PATH
 
 
   set -gx MANPATH ~/.local/man $MANPATH
 
+  set -gx HOMEBREW_NO_AUTO_UPDATE
+  alias cows="lua ~/projects/cli/cow-tools/main.lua"
   set XDG_CONFIG_HOME /Users/test/.config
   ## aliases
   alias man batman
   # navigation
   alias e=$EDITOR
-  alias f=y
 
 
+  alias f=y # yazi
   alias l='ls --color=auto -A'
   alias ls='ls --color=auto -A'
   bind \cz 'fg 2>/dev/null; commandline -f repaint' # reopen with C-z
@@ -35,16 +38,4 @@ if status is-interactive
   alias dl-yt="yt-dlp --format mp4"
   source ~/.config/fish/functions/key-bindings.fish
   alias cp="cp -r"
-
-  # zoxide init fish --cmd cd | source
-
-  alias c cd
-  set NNN_FCOLORS 8a6449f4647c6434b49ec2af
-  # export ZELLIJ_CONFIG_DIR=$HOME/.config/zellij
-
-  # Check if our Terminal emulator is Ghostty
-  # if [ "$TERM" = "xterm-ghostty" ]
-  # Launch zellij
-  # eval (zellij setup --generate-auto-start fish | string collect)
-  # end
 end

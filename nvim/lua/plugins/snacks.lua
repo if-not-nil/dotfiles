@@ -81,13 +81,13 @@ return {
 		-- 	end,
 		-- 	desc = "ls pickers",
 		-- },
-		{
-			"<leader>b",
-			function()
-				Snacks.explorer()
-			end,
-			desc = "File Explorer",
-		},
+		-- {
+		-- 	"<leader>b",
+		-- 	function()
+		-- 		Snacks.explorer()
+		-- 	end,
+		-- 	desc = "File Explorer",
+		-- },
 	},
 	init = function()
 		vim.api.nvim_create_autocmd("User", {
