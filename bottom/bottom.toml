@@ -85,7 +85,7 @@ process_memory_as_value = true
 [processes]
 # The columns shown by the process widget. The following columns are supported:
 # PID, Name, CPU%, Mem%, R/s, W/s, T.Read, T.Write, User, State, Time, GMem%, GPU%
-columns = ["PID", "Name", "Mem%", "CPU%", "GPU%", "GMem%", "R/s", "W/s", "T.Read", "T.Write", "User", "State"]
+columns = ["PID", "Name", "Mem%",  "CPU%", "GPU%", "State", "GMem%", "R/s", "W/s", "T.Read", "T.Write", "User"]
 
 # CPU widget configuration
 #[cpu]

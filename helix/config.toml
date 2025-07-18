@@ -22,7 +22,6 @@ space = "none"
 [keys.normal]
 "esc" = ["collapse_selection", "collapse_selection"]
 "," = "repeat_last_motion"
-";" = "command_mode"
 C-s = ":w" # Maps Ctrl-s to the typable command :w which is an alias for :write (save file)
 tab = ":bn"
 S-tab = ":bp"

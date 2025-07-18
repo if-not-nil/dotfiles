@@ -24,18 +24,23 @@ if status is-interactive
   alias cows="lua ~/projects/cli/cow-tools/main.lua"
   set XDG_CONFIG_HOME /Users/test/.config
   ## aliases
+  alias f=y # yazi
   alias man batman
-  # navigation
+
+  # files
+  alias l="eza"
+  alias ls="eza -a"
+  alias c="cd" 
+  alias cp="cp -r"
+
   alias e=$EDITOR
 
 
-  alias f=y # yazi
-  alias l='ls --color=auto -A'
-  alias ls='ls --color=auto -A'
+  # alias l='ls --color=auto -A'
+  # alias ls='ls --color=auto -A'
   bind \cz 'fg 2>/dev/null; commandline -f repaint' # reopen with C-z
   # utility
   alias dl-ytm="yt-dlp -x --audio-format mp3"
   alias dl-yt="yt-dlp --format mp4"
   source ~/.config/fish/functions/key-bindings.fish
-  alias cp="cp -r"
 end

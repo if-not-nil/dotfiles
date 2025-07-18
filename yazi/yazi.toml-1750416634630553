@@ -1,5 +1,5 @@
-[mgr]
-ratio = [0, 5,5]
+[manager]
+# ratio = [0, 5,5]
 sort_by = "natural"
 show_hidden = true
 

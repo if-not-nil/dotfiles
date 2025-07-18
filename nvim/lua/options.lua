@@ -1,5 +1,4 @@
 local opt = vim.opt
-
 opt.termguicolors = true
 -- o.background = "dark"
 -- vim.cmd.colorscheme("retrobox")
@@ -11,6 +10,11 @@ opt.scrolloff = 5
 opt.splitbelow = false
 opt.shortmess:append("A")
 opt.shada = { "'10", "<0", "s10", "h" }
+
+vim.o.keymap = "russian-jcukenmac"
+vim.o.iminsert = 0
+vim.o.imsearch = 0
+vim.o.langnoremap = true
 
 opt.ignorecase = true
 opt.smartcase = true

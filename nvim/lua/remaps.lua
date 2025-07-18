@@ -24,26 +24,22 @@ map({ "n", "x" }, "U", vim.cmd.redo, { desc = "redo" })
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv") -- Shift visual selected line down
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv") -- Shift visual selected line up
 map("n", "J", "mzJ`z", { desc = "join lines and keep cursor position" })
--- map("n", "Q", "<nop>", { desc = "disable Ex mode" })
 map("n", "<C-k>", "<cmd>cnext<CR>zz", { desc = "next quickfix item" })
 map("n", "<C-j>", "<cmd>cprev<CR>zz", { desc = "previous quickfix item" })
 
 map("n", "<Esc>", "<cmd>noh<CR>", { desc = "clear search highlights" })
 
--- Swap : and ; functionality
-vim.keymap.set({ "n", "x" }, ";", ":", { noremap = true, desc = "Enter command mode" })
-vim.keymap.set({ "n", "x" }, ":", ";", { noremap = true, desc = "Repeat last f/F/t/T" })
-
--- run task
-
--- vim.keymap.set("n", "<leader>r", function()
--- 	local ext = vim.fn.expand("%:e")
--- 	local output
--- 	if ext == "py" then
--- 		output = vim.fn.system("pytest main.py")
--- 		-- vim.notify(output, vim.log.levels.INFO, { title = "pytest output" })
--- 	else
--- 		output = vim.fn.system("task")
--- 		-- vim.notify(output, vim.log.levels.INFO, { title = "task output" })
--- 	end
--- end, { silent = false, desc = "Run pytest or task based on file type" })
+-- run the build system
+map("n", "<leader>j", function()
+	vim.fn.system({
+		"/opt/homebrew/bin/wezterm",
+		"cli",
+		"spawn",
+		"--new-window",
+		"--cwd",
+		vim.fn.getcwd(),
+		"--",
+		"/opt/homebrew/bin/just",
+	})
+	-- os.execute("/opt/homebrew/bin/wezterm cli spawn --new-window -- /opt/homebrew/bin/just")
+end)

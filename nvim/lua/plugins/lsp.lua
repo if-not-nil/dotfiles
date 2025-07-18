@@ -16,14 +16,10 @@ return {
 				lua_ls = {
 					settings = {
 						Lua = {
-							diagnostics = {
-								globals = { "vim" }, -- Recognize 'vim' as a global variable
-							},
 							workspace = {
 								library = {
 									vim.api.nvim_get_runtime_file("", true),
 									"${3rd}/love2d/library",
-									"${3rd}/amulet/library",
 								}, -- Include Neovim runtime files
 							},
 							telemetry = {
