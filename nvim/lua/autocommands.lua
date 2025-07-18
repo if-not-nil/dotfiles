@@ -3,10 +3,6 @@ local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 local yank_group = augroup("HighlightYank", {})
 
-function R(name)
-	require("plenary.reload").reload_module(name)
-end
-
 autocmd("TextYankPost", {
 	group = yank_group,
 	pattern = "*",
@@ -17,7 +13,6 @@ autocmd("TextYankPost", {
 		})
 	end,
 })
-
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 	callback = function(e)
@@ -31,9 +26,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		-- LSP keybindings
 		map("n", "gra", vim.lsp.buf.code_action, "code action")
 		map("n", "K", vim.lsp.buf.hover, "show hover info")
+		map({ "i", "n" }, "<C-k>", vim.lsp.buf.hover, "show hover info")
 		map("n", "grs", vim.lsp.buf.workspace_symbol, "search workspace symbols")
 		map("n", "gd", vim.lsp.buf.definition, "go to definition")
-		map("n", "fD", vim.lsp.buf.declaration, "go to declaration")
+		map("n", "fd", vim.lsp.buf.declaration, "go to declaration")
 		map("i", "<C-h>", vim.lsp.buf.signature_help, "show signature help")
 		map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, "see available code actions")
 		-- map("n", "<leader>rn", vim.lsp.buf.rename, "smart rename")

@@ -1,14 +1,4 @@
 return {
-	-- { -- that'll take a bit to learn!
-	-- 	"echasnovski/mini.align",
-	-- 	opts = {
-	-- 		mappings = {
-	-- 			start = "gA",
-	-- 			start_with_preview = "ga",
-	-- 		},
-	-- 	},
-	-- },
-	-- { "echasnovski/mini.files", opts = {} },
 	{ "echasnovski/mini.surround", opts = {} },
 	{ "echasnovski/mini.pairs", opts = {} },
 	{ "echasnovski/mini.icons", opts = {} },
@@ -37,36 +27,4 @@ return {
 			},
 		},
 	},
-	-- {
-	-- 	"echasnovski/mini.statusline",
-	-- 	opts = {
-	-- 		content = {
-	-- 			active = function()
-	-- 				local MiniStatusline = require("mini.statusline")
-	-- 				local mode_title, mode_hl = MiniStatusline.section_mode({ trunc_width = 120 })
-	-- 				local mode = string.upper(mode_title)
-	-- 				local git = MiniStatusline.section_git({ trunc_width = 40 })
-	-- 				local diff = MiniStatusline.section_diff({ trunc_width = 75 })
-	-- 				local diagnostics = MiniStatusline.section_diagnostics({ trunc_width = 75, use_icons = false })
-	-- 				local lsp = MiniStatusline.section_lsp({ trunc_width = 75, use_icons = false })
-	-- 				local filename = MiniStatusline.section_filename({ trunc_width = 140 })
-	-- 				-- local fileinfo = MiniStatusline.section_fileinfo({ trunc_width = 120 })
-	-- 				-- local location = MiniStatusline.section_location({ trunc_width = 75 })
-	-- 				local location = string.format("%d:%d", vim.fn.line("."), vim.fn.col(".")) -- e.g. 12:34
-	-- 				-- local search = MiniStatusline.section_searchcount({ trunc_width = 75 })
-	--
-	-- 				return MiniStatusline.combine_groups({
-	-- 					{ hl = mode_hl, strings = { mode } },
-	-- 					{ hl = "MiniStatuslineDevinfo", strings = { filename } },
-	-- 					"%<", -- Mark general truncate point
-	-- 					{ hl = "MiniStatuslineDevinfo", strings = { git, diff, diagnostics, lsp } },
-	-- 					"%=", -- End left alignment
-	-- 					-- { hl = "MiniStatuslineFileinfo", strings = { fileinfo } },
-	-- 					-- { hl = mode_hl, strings = { search, location } },
-	-- 					{ hl = mode_hl, strings = { location } },
-	-- 				})
-	-- 			end,
-	-- 		},
-	-- 	},
-	-- },
 }
