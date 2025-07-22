@@ -1,5 +1,6 @@
 local opt = vim.opt
 opt.termguicolors = true
+
 -- o.background = "dark"
 -- vim.cmd.colorscheme("retrobox")
 opt.number = true

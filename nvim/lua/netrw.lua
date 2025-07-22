@@ -1,8 +1,11 @@
 -- https://gist.github.com/t-mart/610795fcf7998559ea80
 -- https://www.reddit.com/r/neovim/comments/1dc78r4/custom_netrw_workflow_settings_maps_etc/
 
-vim.g.netrw_banner = 0
+-- vim.g.netrw_banner = 0
 vim.g.netrw_keepdir = 1
+vim.g.netrw_liststyle = 1
+vim.g.netrw_hide = 1
+vim.g.netrw_preview = 1
 
 vim.keymap.set("n", "<leader>e", "<cmd>Explore<cr>")
 function ToggleNetRW()
@@ -45,11 +48,10 @@ vim.api.nvim_create_autocmd("filetype", {
 
 		bind("n", "%")
 		bind("a", "%")
-		bind("w", "<CMD>ToggleNetRW<CR>")
 		bind("q", "<cmd>ToggleNetRW<cr>")
 		bind("<leader>e", "<cmd>ToggleNetRW<cr>")
 		bind("<Esc>", "<cmd>ToggleNetRW<cr>")
-		bind("r", "R")
+		-- bind("r", "R")
 		bind("h", "-")
 		bind("H", "u")
 		bind("l", "<cr>")

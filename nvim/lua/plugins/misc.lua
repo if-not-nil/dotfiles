@@ -1,6 +1,7 @@
 return {
 	"nvim-lua/plenary.nvim",
 	-- note to self: dont add whichkey back just use leader+?
+	-- "folke/which-key.nvim",
 
 	{
 		"mbbill/undotree",

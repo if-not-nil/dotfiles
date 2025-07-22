@@ -1,6 +1,6 @@
 return function(wezterm, config)
 	-- local colors = config.colors.tab_bar
-	config.tab_bar_at_bottom = true
+	config.tab_bar_at_bottom = false
 	config.use_fancy_tab_bar = false
 
 	local function tab_title(tab_info)
@@ -19,8 +19,6 @@ return function(wezterm, config)
 		-- current_working_dir is a URI string like "file:///home/user/projects"
 		-- So we strip the "file://" prefix and decode URL escapes
 		-- title = string.format(" %s ", title)
-		local pwd = tab.active_pane.current_working_dir
-		print(pwd)
 		title = string.format(" %d: %s ", tab.tab_index + 1, title)
 		if tab.is_active then
 			return {

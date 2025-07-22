@@ -220,12 +220,12 @@ theme = "gruvbox"
 [[row]]
     ratio=2
     [[row.child]]
-      ratio=3
+      ratio=1
       [[row.child.child]]
         type="temp"
       [[row.child.child]]
         type="mem"
     [[row.child]]
-      ratio=4
+      ratio=2
       type="proc"
 

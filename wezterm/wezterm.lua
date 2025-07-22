@@ -3,15 +3,16 @@ local config = wezterm.config_builder()
 
 config.colors = require("theme")
 -- config.color_scheme = "GruvboxDarkHard"
-config.keys = require("keys")
 
-config.default_prog = { "/opt/homebrew/bin/bash" }
+config.default_prog = { "/opt/homebrew/bin/bash" } -- the newer one
 
 config.window_decorations = "RESIZE"
 -- wezterm.plugin
 -- 	.require("https://github.com/yriveiro/wezterm-tabs")
 -- 	.apply_to_config(config, { tabs = { tab_bar_at_bottom = true } })
 require("tabs")(wezterm, config)
+require("keys")(wezterm, config)
+require("plugins")(wezterm, config)
 
 config.hide_tab_bar_if_only_one_tab = true
 config.window_padding = {
@@ -29,10 +30,11 @@ wezterm.on("update-right-status", function(window, pane)
 	}))
 end)
 config.audible_bell = "Disabled"
-config.font_size = 24.0
+config.font_size = 18.0
+-- config.font_size = 24.0
 -- config.font = wezterm.font("Terminus (TTF)")
-config.font = wezterm.font("Terminess Nerd Font Mono")
--- config.font = wezterm.font("Maple Mono Normal NL NF")
+-- config.font = wezterm.font("Terminess Nerd Font Mono")
+config.font = wezterm.font("Maple Mono Normal NL NF")
 config.font_shaper = "Harfbuzz"
 config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
 -- config.cell_width = {

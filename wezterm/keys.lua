@@ -1,30 +1,53 @@
-local wezterm = require("wezterm") --[[@as Wezterm]]
-local act = wezterm.action
+return function(wezterm, config)
+	local act = wezterm.action
 
-return {
-	-- { key = "F1", action = act.DecreaseFontSize },
-	{ key = "Backspace", mods = "CMD", action = act.SendKey({ key = "w", mods = "CTRL" }) },
-	{ key = "Backspace", mods = "CMD|SHIFT", action = act.SendKey({ key = "u", mods = "CTRL" }) },
+	local mod = "CMD"
+	local mod_shift = "CMD|SHIFT"
+	local resize_amount = 5
+	local layouts = require("layouts")
+	config.keys = {
+		{ key = "Enter", mods = mod, action = wezterm.action_callback(layouts.bsp) },
+		{ key = "Enter", mods = mod_shift, action = wezterm.action_callback(layouts.bsp_reverse) },
+		{ key = "Backspace", mods = mod, action = act.SendKey({ key = "w", mods = "CTRL" }) },
+		{
+			key = "r",
+			mods = mod,
+			action = act.ActivateKeyTable({
+				name = "resize_pane",
+				one_shot = false,
+			}),
+		},
 
-	{ key = "w", mods = "CMD", action = act.CloseCurrentPane({ confirm = false }) },
+		{ key = "w", mods = mod, action = act.CloseCurrentPane({ confirm = false }) },
 
-	-- { key = "2", mods = "CMD", action = act.ActivateTabRelative(1) },
-	-- { key = "1", mods = "CMD", action = act.ActivateTabRelative(-1) },
-	--
-	{ key = "1", mods = "CMD|SHIFT", action = act.MoveTabRelative(-1) },
-	{ key = "2", mods = "CMD|SHIFT", action = act.MoveTabRelative(1) },
-	{ key = "[", mods = "CMD", action = act.MoveTabRelative(-1) },
-	{ key = "]", mods = "CMD", action = act.MoveTabRelative(1) },
+		{ key = "[", mods = mod, action = act.MoveTabRelative(-1) },
+		{ key = "]", mods = mod, action = act.MoveTabRelative(1) },
 
-	{ key = "Enter", mods = "CMD", action = act.SplitPane({ direction = "Right", size = { Percent = 50 } }) },
-	{ key = "Enter", mods = "SHIFT|CMD", action = act.SplitPane({ direction = "Left", size = { Percent = 50 } }) },
+		-- { key = "j", mods = mod, action = act.ActivatePaneDirection("Down") },
+		-- { key = "k", mods = mod, action = act.ActivatePaneDirection("Up") },
+		-- { key = "h", mods = mod, action = act.ActivatePaneDirection("Left") },
+		-- { key = "l", mods = mod, action = act.ActivatePaneDirection("Right") },
 
-	{ key = "h", mods = "CMD", action = act.AdjustPaneSize({ "Left", 5 }) },
-	{ key = "l", mods = "CMD", action = act.AdjustPaneSize({ "Right", 5 }) },
+		{ key = "j", mods = mod_shift, action = act.RotatePanes("CounterClockwise") },
+		{ key = "k", mods = mod_shift, action = act.RotatePanes("Clockwise") },
+	}
+	config.key_tables = {
+		resize_pane = {
+			{ key = "LeftArrow", action = act.AdjustPaneSize({ "Left", resize_amount }) },
+			{ key = "h", action = act.AdjustPaneSize({ "Left", resize_amount }) },
 
-	{ key = "j", mods = "CMD", action = act.ActivatePaneDirection("Prev") },
-	{ key = "k", mods = "CMD", action = act.ActivatePaneDirection("Next") },
+			{ key = "RightArrow", action = act.AdjustPaneSize({ "Right", resize_amount }) },
+			{ key = "l", action = act.AdjustPaneSize({ "Right", resize_amount }) },
 
-	{ key = "j", mods = "CMD|SHIFT", action = act.RotatePanes("CounterClockwise") },
-	{ key = "k", mods = "CMD|SHIFT", action = act.RotatePanes("Clockwise") },
-}
+			{ key = "UpArrow", action = act.AdjustPaneSize({ "Up", resize_amount }) },
+			{ key = "k", action = act.AdjustPaneSize({ "Up", resize_amount }) },
+
+			{ key = "DownArrow", action = act.AdjustPaneSize({ "Down", resize_amount }) },
+			{ key = "j", action = act.AdjustPaneSize({ "Down", resize_amount }) },
+
+			-- Cancel the mode by pressing escape
+			{ key = "Escape", action = "PopKeyTable" },
+			{ key = "r", mods = mod, action = "PopKeyTable" },
+		},
+	}
+end
