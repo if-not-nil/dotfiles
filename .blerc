@@ -38,7 +38,7 @@
 ## command line texts.  Possible values include, for example, "vim", "emacs
 ## -nw" and "nano".
 
-bleopt editor=/opt/homebrew/bin/nvim
+bleopt editor=nvim
 
 
 ## The following settings sets the behavior of visible bells (vbell).  The
@@ -581,8 +581,8 @@ bleopt editor=/opt/homebrew/bin/nvim
 #bleopt decode_error_cseq_vbell=1
 #bleopt decode_error_cseq_discard=1
 #bleopt decode_error_kseq_abell=1
-#bleopt decode_error_kseq_vbell=1
-#bleopt decode_error_kseq_discard=1
+bleopt decode_error_kseq_vbell=
+bleopt decode_error_kseq_discard=
 
 
 ## This variable sets the limit to the count of recursive calls of keyboard
@@ -1086,6 +1086,7 @@ ble-face -s command_builtin           fg=green
 # ble-bind -m emacs -f 'RET' 'accept-line'
 
 # # For vim editing mode
+ble-bind -m 'vi_imap' -f 'C-e' 'edit-and-execute-command'
 ble-bind -m vi_imap -f 'C-m' 'accept-line'
 # ble-bind -m vi_imap -f 'RET' 'accept-line'
 ble-bind -m vi_nmap -f 'C-m' 'accept-line'
