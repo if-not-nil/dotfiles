@@ -1,0 +1,7 @@
+[init]
+  defaultBranch = main
+[user]
+	name = if-not-nil
+	email = 62560250+if-not-nil@users.noreply.github.com
+[http]
+  postBuffer = 524288000
