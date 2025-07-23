@@ -21,6 +21,7 @@ export PATH="$HOME/.bun/bin:$PATH"
 # export PATH="${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin:$PATH"
 
 # finds a bunch of caches
+alias pacman="sudo pacman"
 alias _fd_cache_pattern="fd --no-ignore --hidden --type d --absolute-path --regex '(node_modules|\\.npm|cargo/registry|cargo/git|cargo/\\.package-cache|rustup|\\.cache/zig|zig-cache|zig-out)'"
 alias fd_caches_echo="_fd_cache_pattern -x echo {}"
 alias fd_caches_rm="_fd_cache_pattern -x rm -rf {}"
@@ -38,7 +39,7 @@ alias ..="cd .."
 
 [[ $- != *i* ]] && return
 source -- ~/bin/ext/ble.sh/ble.sh --attach=none
-eval "$(zoxide init bash)" 
+# eval "$(zoxide init bash)" 
 
 function y() {
   local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
@@ -52,6 +53,6 @@ alias f=y
 PS1='\[\e[93m\]\w\[\e[0m\] λ '
 set -o vi
 
-~/bin/koghi
+# ~/bin/koghi
 
 [[ ! ${BLE_VERSION-} ]] || ble-attach

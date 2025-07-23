@@ -575,7 +575,7 @@ bleopt editor=/opt/homebrew/bin/nvim
 ## non-empty value is given, chars/sequences are discarded.
 
 #bleopt decode_error_char_abell=
-#bleopt decode_error_char_vbell=1
+# bleopt decode_error_char_vbell=1
 #bleopt decode_error_char_discard=
 #bleopt decode_error_cseq_abell=
 #bleopt decode_error_cseq_vbell=1
@@ -1217,6 +1217,7 @@ function blerc/vim-load-hook {
   ## executes the command.
 
   #ble-bind -m vi_imap -f 'C-RET' 'accept-line'
+  # ble-bind -m vi_imap -f 'S-SP' "ble-edit-insert ' '"
 
   ## The default mapping of <M-backspace> (whose actual key sequence depends on
   ## your terminal) copies the previous shell word in the kill ring.  Instead,

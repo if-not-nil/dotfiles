@@ -28,6 +28,10 @@ map("n", "J", "mzJ`z", { desc = "join lines and keep cursor position" })
 -- map("n", "<C-j>", "<cmd>cprev<CR>zz", { desc = "previous quickfix item" })
 map("n", "<Esc>", "<cmd>noh<CR>", { desc = "clear search highlights" })
 
+-- Better indenting in visual mode
+vim.keymap.set("v", "<", "<gv", { desc = "Indent left and reselect" })
+vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
+
 -- idk why but it changes based on the filetype???
 -- vim.opt.makeprg = "make"
 -- map("n", "<leader>j", "<cmd>make<CR>")
@@ -47,32 +51,32 @@ map("n", "<leader>j", "<cmd>!just<CR>")
 -- end)
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
-	desc = "keymap 'q' to close help/quickfix/netrw/etc windows",
-	pattern = "help,qf,netrw",
-	callback = function()
-		vim.keymap.set(
-			"n",
-			"q",
-			"<C-w>c",
-			{ buffer = true, desc = "Quit (or Close) help, quickfix, netrw, etc windows" }
-		)
-	end,
+  desc = "keymap 'q' to close help/quickfix/netrw/etc windows",
+  pattern = "help,qf,netrw",
+  callback = function()
+    vim.keymap.set(
+      "n",
+      "q",
+      "<C-w>c",
+      { buffer = true, desc = "Quit (or Close) help, quickfix, netrw, etc windows" }
+    )
+  end,
 })
 
 local function send_keys(keys, mode)
-	local replaced = vim.api.nvim_replace_termcodes(keys, true, false, true)
-	vim.api.nvim_feedkeys(replaced, mode, false)
+  local replaced = vim.api.nvim_replace_termcodes(keys, true, false, true)
+  vim.api.nvim_feedkeys(replaced, mode, false)
 end
 
 -- like the best thing ever for working with raylib
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = "zig",
-	callback = function()
-		vim.keymap.set("v", "<leader>2", function()
-			send_keys("sa)hi@", "v")
-		end)
-		vim.keymap.set("v", "<leader>3", function()
-			send_keys("sa)hi@as<Right>, <Left><Left>", "v")
-		end)
-	end,
+  pattern = "zig",
+  callback = function()
+    vim.keymap.set("v", "<leader>2", function()
+      send_keys("sa)hi@", "v")
+    end)
+    vim.keymap.set("v", "<leader>3", function()
+      send_keys("sa)hi@as<Right>, <Left><Left>", "v")
+    end)
+  end,
 })
