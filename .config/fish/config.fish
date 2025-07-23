@@ -20,7 +20,6 @@ if status is-interactive
 
   alias e=$EDITOR
 
-
   alias pacman="sudo pacman"
   alias l='ls --color=auto -A'
   alias ls='ls --color=auto -A'

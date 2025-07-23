@@ -1,8 +1,14 @@
 return function(wezterm, config)
 	local act = wezterm.action
 
-	local mod = "CMD"
-	local mod_shift = "CMD|SHIFT"
+	local mod = "CTRL|SHIFT"
+	local mod_shift = "ALT|SHIFT"
+
+	if string.find(wezterm.target_triple, "darwin") then
+		mod = "CMD"
+		mod_shift = "CMD|SHIFT"
+	end
+
 	local resize_amount = 5
 	local layouts = require("layouts")
 	config.keys = {

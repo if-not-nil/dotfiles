@@ -35,4 +35,12 @@ return function(wezterm, config)
 			{ Text = title },
 		}
 	end)
+	-- wezterm.on("update-right-status", function(window, pane)
+	-- 	-- "Wed Mar 3 08:14"
+	-- 	local date = wezterm.strftime("%b %-d, %H:%M ")
+	--
+	-- 	window:set_right_status(wezterm.format({
+	-- 		{ Text = date },
+	-- 	}))
+	-- end)
 end
