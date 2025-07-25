@@ -1,0 +1,1 @@
+riverctl spawn "lua $HOME/.config/river/init.lua"

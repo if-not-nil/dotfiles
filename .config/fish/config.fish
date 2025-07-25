@@ -8,11 +8,12 @@ if status is-interactive
   set -gx PATH ~/bin/ $PATH
   set -gx PATH ~/bin/ext $PATH
   set -gx PATH ~/.local/bin $PATH
-
   zoxide init fish | source
   batman --export-env | source
   ## aliases
-
+  if set -q ZELLIJ_SESSION_NAME
+    bind alt-e "cd (zellij pipe -p filepicker)"
+  end
   # files
 
   alias c="cd" 
@@ -27,6 +28,7 @@ if status is-interactive
   # utility
   alias dl-ytm="yt-dlp -x --audio-format mp3"
   alias dl-yt="yt-dlp --format mp4"
+  bind --preset --erase alt-v
   bind ctrl-h 'backward-kill-word'
   bind ctrl-e 'edit_command_buffer'
 end
