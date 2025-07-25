@@ -27,4 +27,6 @@ if status is-interactive
   # utility
   alias dl-ytm="yt-dlp -x --audio-format mp3"
   alias dl-yt="yt-dlp --format mp4"
+  bind ctrl-h 'backward-kill-word'
+  bind ctrl-e 'edit_command_buffer'
 end

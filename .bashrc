@@ -54,7 +54,7 @@ have yazi && y() {
 PS1='\[\e[93m\]\w\[\e[0m\] λ '
 set -o vi
 
-# ~/bin/koghi
+have koghi && koghi
 
 if [[ -f ~/bin/ext/ble.sh/ble.sh ]]; then
   source -- ~/bin/ext/ble.sh/ble.sh --attach=none
