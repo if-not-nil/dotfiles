@@ -4,8 +4,10 @@
 
 keybinds clear-defaults=true {
   locked {
+    bind "Super c" {Copy;}
     bind "Alt c" {Copy;}
     bind "Ctrl g" { SwitchToMode "normal"; }
+    bind "Super g" { SwitchToMode "normal"; }
   }
   pane {
     bind "left" { MoveFocus "left"; }
@@ -176,6 +178,35 @@ keybinds clear-defaults=true {
   bind "Alt w" { CloseFocus; }
   bind "Alt o" { MoveTab "right"; }
   bind "Ctrl q" { Quit; }
+
+  // for mac
+  bind "Super [" { PreviousSwapLayout; }
+  bind "Super ]" { NextSwapLayout; }
+  bind "Super t" { NewTab; }
+  bind "Super w" { CloseFocus; }
+  bind "Super o" { MoveTab "right"; }
+  bind "Super g" { SwitchToMode "locked"; }
+  bind "Super 1" { GoToTab 1; }
+  bind "Super 2" { GoToTab 2; }
+  bind "Super 3" { GoToTab 3; }
+  bind "Super 4" { GoToTab 4; }
+  bind "Super 5" { GoToTab 5; }
+  bind "Super 6" { GoToTab 6; }
+  bind "Super 7" { GoToTab 7; }
+  bind "Super 8" { GoToTab 8; }
+  bind "Super 9" { GoToTab 9; }
+
+  bind "Super +" { Resize "Increase"; }
+  bind "Super -" { Resize "Decrease"; }
+  bind "Super =" { Resize "Increase"; }
+  bind "Super [" { PreviousSwapLayout; }
+  bind "Super ]" { NextSwapLayout; }
+  bind "Super f" { ToggleFloatingPanes; }
+  bind "Super i" { MoveTab "left"; }
+  bind "Super Enter" { NewPane; }
+  bind "Super t" { NewTab; }
+  bind "Super w" { CloseFocus; }
+  bind "Super o" { MoveTab "right"; }
 }
 shared_except "locked" "move" {
   bind "Ctrl m" { SwitchToMode "move"; }
@@ -336,7 +367,7 @@ default_mode "normal"
 // Choose the path to the default shell that zellij will use for opening new panes
 // Default: $SHELL
 // 
-default_shell "fish"
+// default_shell "/opt/homebrew/bin/fish"
 
 // Choose the path to override cwd that zellij will use for opening new panes
 // 
@@ -350,7 +381,7 @@ default_layout "compact"
 // The folder in which Zellij will look for layouts
 // (Requires restart)
 // 
-// layout_dir "/tmp"
+layout_dir "~/.config/zellij/layouts"
 
 // The folder in which Zellij will look for themes
 // (Requires restart)

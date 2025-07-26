@@ -5,6 +5,7 @@ if status is-interactive
   set -gx EDITOR nvim
   # path
 
+  set -gx PATH /opt/homebrew/bin/ $PATH
   set -gx PATH ~/bin/ $PATH
   set -gx PATH ~/bin/ext $PATH
   set -gx PATH ~/.local/bin $PATH
