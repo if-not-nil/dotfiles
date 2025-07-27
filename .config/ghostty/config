@@ -47,16 +47,17 @@ confirm-close-surface = false
 macos-titlebar-style = hidden
 keybind=clear
 keybind=cmd+shift+,=reload_config
-keybind = cmd+h=text:\x1Bh
-keybind = cmd+j=text:\x1Bj
-keybind = cmd+k=text:\x1Bk
-keybind = cmd+l=text:\x1Bl
-keybind = cmd+[=text:\x1B[
-keybind = cmd+]=text:\x1B]
+# keybind = cmd+h=text:\x1Bh
+# keybind = cmd+j=text:\x1Bj
+# keybind = cmd+k=text:\x1Bk
+# keybind = cmd+l=text:\x1Bl
+# keybind = cmd+[=text:\x1B[
+# keybind = cmd+]=text:\x1B]
 
 keybind = cmd+t=unbind
 keybind = cmd+n=unbind
-keybind = cmd+c=unbind
+keybind = cmd+c=copy_to_clipboard
+keybind = cmd+v=paste_from_clipboard
 keybind = cmd+w=unbind
 keybind = cmd+opt+left=unbind
 keybind = cmd+opt+right=unbind

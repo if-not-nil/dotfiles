@@ -26,9 +26,9 @@ for host, packages in pairs(hosts) do
 end
 vim.pack.add(packs)
 
-map("n", "<leader>z", function()
+map("n", "<leader>Z", function()
   require("zen-mode").toggle({
-    window = { width = 1 }})
+    window = { width = 0.8 } })
 end)
 
 -- appearance
@@ -38,29 +38,7 @@ require("mini.tabline").setup({
     return MiniTabline.default_format(buf_id, label) .. suffix
   end,
 })
--- require("mini.statusline").setup({
---   content = {
---     active =
---         function()
---           local mode, mode_hl = MiniStatusline.section_mode({ trunc_width = 120 })
---           local git           = MiniStatusline.section_git({ trunc_width = 40 })
---           local diff          = MiniStatusline.section_diff({ trunc_width = 75 })
---           local diagnostics   = MiniStatusline.section_diagnostics({ trunc_width = 75 })
---           local lsp           = MiniStatusline.section_lsp({ trunc_width = 75 })
---           local filename      = MiniStatusline.section_filename({ trunc_width = 140 })
---           local location      = string.format("%d:%d", vim.fn.line("."), vim.fn.col("."))
---
---           return MiniStatusline.combine_groups({
---             { hl = mode_hl,                 strings = { string.upper(mode) } },
---             { hl = 'MiniStatuslineDevinfo', strings = { git, diff, diagnostics, lsp } },
---             '%<',
---             { hl = 'MiniStatuslineFilename', strings = { filename } },
---             '%=',
---             { hl = mode_hl,                  strings = { location } },
---           })
---         end
---   }
--- })
+
 require("ccc").setup({
   highlighter = {
     auto_enable = true,
@@ -73,7 +51,13 @@ require("mini.surround").setup()
 
 -- lsp
 MiniIcons.tweak_lsp_kind()
-require('mini.completion').setup()
+require('mini.completion').setup({
+  lsp_completion = {
+    -- `source_func` should be one of 'completefunc' or 'omnifunc'.
+    source_func = 'omnifunc'
+  }
+})
+
 require("mini.snippets").setup({
   mappings = {
     jump_next = '<C-j>',

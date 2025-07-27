@@ -32,21 +32,17 @@ vim.api.nvim_create_autocmd('BufReadPost', {
 })
 
 local function update_tabline_visibility()
-  -- Count the number of *listed* buffers (not just any buffer)
   local listed_buffers = vim.tbl_filter(function(buf)
     return vim.fn.buflisted(buf) == 1
   end, vim.api.nvim_list_bufs())
 
-  -- Show tabline only if 2 or more buffers are open
   if #listed_buffers >= 2 then
-    vim.o.showtabline = 2  -- always show
+    vim.o.showtabline = 2
   else
-    vim.o.showtabline = 0  -- never show
+    vim.o.showtabline = 0
   end
 end
-
--- Set up autocommands to update the tabline visibility dynamically
-vim.api.nvim_create_autocmd({ "BufAdd", "BufDelete", "BufEnter", "BufLeave" }, {
+vim.api.nvim_create_autocmd({ "BufAdd", "BufDelete", "BufEnter", "VimEnter" }, {
   callback = update_tabline_visibility,
 })
 -- local MainGroup = augroup("main", {})
@@ -55,3 +51,25 @@ vim.api.nvim_create_autocmd({ "BufAdd", "BufDelete", "BufEnter", "BufLeave" }, {
 -- 	pattern = "*",
 -- 	command = [[%s/\s\+$//e]],
 -- })
+
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  desc = "keymap 'q' to close help/quickfix/netrw/etc windows",
+  pattern = "help,qf,netrw",
+  callback = function()
+    vim.keymap.set(
+      "n",
+      "q",
+      "<C-w>c",
+      { buffer = true, desc = "Quit (or Close) help, quickfix, netrw, etc windows" }
+    )
+  end,
+})
+
+-- vsplit help by default
+vim.api.nvim_create_autocmd("WinNew", {
+  callback = function()
+    if vim.bo.filetype == "help" then
+      vim.cmd("wincmd L")
+    end
+  end,
+})

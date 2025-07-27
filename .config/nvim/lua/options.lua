@@ -1,9 +1,10 @@
 local opt = vim.opt
 -- vim.o.winborder = "rounded"
-opt.termguicolors = true
-
 -- o.background = "dark"
--- vim.cmd.colorscheme("retrobox")
+vim.cmd.colorscheme("bark")
+
+opt.termguicolors = true
+opt.fillchars:append({ eob = " " })
 opt.number = true
 opt.relativenumber = true
 opt.signcolumn = "yes"
@@ -12,7 +13,6 @@ opt.scrolloff = 5
 opt.splitbelow = false
 opt.shortmess:append("A")
 opt.shada = { "'10", "<0", "s10", "h" }
-
 vim.o.iminsert = 0
 vim.o.imsearch = 0
 vim.o.langnoremap = true

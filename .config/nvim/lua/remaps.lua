@@ -17,7 +17,15 @@ vim.keymap.set({ "n", "v" }, "<leader>q", function()
 end, { desc = "close current buffer or quit if last" })
 map("t", "<C-w>", "<C-\\><C-n>")
 map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "copy entire file to clipboard" })
-
+map("n", "<leader>z", function()
+  if vim.o.laststatus == 2 or vim.o.laststatus == 3 then
+    vim.o.laststatus = 0
+    vim.o.showtabline = 0
+  else
+    vim.o.laststatus = 2
+    vim.cmd("doautocmd User BufEnter")
+  end
+end)
 -- clipboard
 vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "paste without yanking" })
 
@@ -38,34 +46,7 @@ vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
 
 -- idk why but it changes based on the filetype???
 -- vim.opt.makeprg = "make"
--- map("n", "<leader>j", "<cmd>make<CR>")
 map("n", "<leader>j", "<cmd>!just<CR>")
-
--- map("n", "<leader>j", function()
--- 	vim.fn.system({
--- 		"wezterm",
--- 		"cli",
--- 		"spawn",
--- 		"--new-window", -- TODO: find a way to spawn a tab instead, but switch back to vim when its closed
--- 		"--cwd",
--- 		vim.fn.getcwd(),
--- 		"--",
--- 		"just",
--- 	})
--- end)
-
-vim.api.nvim_create_autocmd({ "FileType" }, {
-  desc = "keymap 'q' to close help/quickfix/netrw/etc windows",
-  pattern = "help,qf,netrw",
-  callback = function()
-    vim.keymap.set(
-      "n",
-      "q",
-      "<C-w>c",
-      { buffer = true, desc = "Quit (or Close) help, quickfix, netrw, etc windows" }
-    )
-  end,
-})
 
 local function send_keys(keys, mode)
   local replaced = vim.api.nvim_replace_termcodes(keys, true, false, true)
