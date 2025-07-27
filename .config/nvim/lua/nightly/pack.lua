@@ -1,20 +1,35 @@
 local map = vim.keymap.set
 
-vim.pack.add({
-  "https://github.com/echasnovski/mini.surround",
-  "https://github.com/echasnovski/mini.tabline",
-  "https://github.com/echasnovski/mini.pick",
-  "https://github.com/echasnovski/mini.files",
-  "https://github.com/echasnovski/mini.icons",
-  "https://github.com/echasnovski/mini.completion",
-  "https://github.com/echasnovski/mini.snippets",
-  "https://github.com/echasnovski/mini.pairs",
-  "https://github.com/echasnovski/mini.statusline",
-  "https://github.com/echasnovski/mini.extra",
-  "https://github.com/neovim/nvim-lspconfig",
-  "https://github.com/uga-rosa/ccc.nvim",
-  "https://github.com/mbbill/undotree",
-})
+local hosts = {
+  ["https://github.com/"] = {
+    "echasnovski/mini.surround",
+    "echasnovski/mini.tabline",
+    "uga-rosa/ccc.nvim",
+    "echasnovski/mini.pick",
+    "echasnovski/mini.files",
+    "echasnovski/mini.icons",
+    "echasnovski/mini.completion",
+    "echasnovski/mini.snippets",
+    "echasnovski/mini.pairs",
+    "echasnovski/mini.extra",
+    "neovim/nvim-lspconfig",
+    "folke/zen-mode.nvim",
+    "mbbill/undotree",
+  } -- this is completely unnecessary
+}   -- however, no developers seem to be
+-- self-hosting their projects
+local packs = {}
+for host, packages in pairs(hosts) do
+  for _, pkg in ipairs(packages) do
+    table.insert(packs, host .. pkg)
+  end
+end
+vim.pack.add(packs)
+
+map("n", "<leader>z", function()
+  require("zen-mode").toggle({
+    window = { width = 1 }})
+end)
 
 -- appearance
 require("mini.tabline").setup({
@@ -23,29 +38,29 @@ require("mini.tabline").setup({
     return MiniTabline.default_format(buf_id, label) .. suffix
   end,
 })
-require("mini.statusline").setup({
-  content = {
-    active =
-        function()
-          local mode, mode_hl = MiniStatusline.section_mode({ trunc_width = 120 })
-          local git           = MiniStatusline.section_git({ trunc_width = 40 })
-          local diff          = MiniStatusline.section_diff({ trunc_width = 75 })
-          local diagnostics   = MiniStatusline.section_diagnostics({ trunc_width = 75 })
-          local lsp           = MiniStatusline.section_lsp({ trunc_width = 75 })
-          local filename      = MiniStatusline.section_filename({ trunc_width = 140 })
-          local location      = string.format("%d:%d", vim.fn.line("."), vim.fn.col("."))
-
-          return MiniStatusline.combine_groups({
-            { hl = mode_hl,                 strings = { string.upper(mode) } },
-            { hl = 'MiniStatuslineDevinfo', strings = { git, diff, diagnostics, lsp } },
-            '%<',
-            { hl = 'MiniStatuslineFilename', strings = { filename } },
-            '%=',
-            { hl = mode_hl,                  strings = { location } },
-          })
-        end
-  }
-})
+-- require("mini.statusline").setup({
+--   content = {
+--     active =
+--         function()
+--           local mode, mode_hl = MiniStatusline.section_mode({ trunc_width = 120 })
+--           local git           = MiniStatusline.section_git({ trunc_width = 40 })
+--           local diff          = MiniStatusline.section_diff({ trunc_width = 75 })
+--           local diagnostics   = MiniStatusline.section_diagnostics({ trunc_width = 75 })
+--           local lsp           = MiniStatusline.section_lsp({ trunc_width = 75 })
+--           local filename      = MiniStatusline.section_filename({ trunc_width = 140 })
+--           local location      = string.format("%d:%d", vim.fn.line("."), vim.fn.col("."))
+--
+--           return MiniStatusline.combine_groups({
+--             { hl = mode_hl,                 strings = { string.upper(mode) } },
+--             { hl = 'MiniStatuslineDevinfo', strings = { git, diff, diagnostics, lsp } },
+--             '%<',
+--             { hl = 'MiniStatuslineFilename', strings = { filename } },
+--             '%=',
+--             { hl = mode_hl,                  strings = { location } },
+--           })
+--         end
+--   }
+-- })
 require("ccc").setup({
   highlighter = {
     auto_enable = true,

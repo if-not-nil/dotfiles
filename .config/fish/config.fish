@@ -21,6 +21,7 @@ if status is-interactive
   end
   # files
   alias tmac="tmux new-session -A -s main"
+  alias tmad="tmux new-session -A -s"
   alias c="cd" 
   alias cp="cp -r"
 
@@ -31,6 +32,7 @@ if status is-interactive
   type -q pacman; and alias pacman="sudo pacman"
   alias l='ls --color=auto -A'
   alias ls='ls --color=auto -A'
+  alias ll='ls -l --color=auto -A'
   bind \cz 'fg 2>/dev/null; commandline -f repaint' # reopen with C-z
 
   # utility

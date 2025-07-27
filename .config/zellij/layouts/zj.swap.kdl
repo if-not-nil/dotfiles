@@ -1,8 +1,8 @@
 tab_template name="ui" {
-   pane size=1 borderless=true {
-       plugin location="compact-bar"
-   }
    children
+   pane size=1 borderless=true {
+        plugin location="zjstatus"
+   }
 }
 
 swap_tiled_layout name="vertical" {
