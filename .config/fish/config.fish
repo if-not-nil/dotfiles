@@ -2,7 +2,7 @@ if status is-interactive
   ### set
   # for self-built only
   # opts
-  set -gx EDITOR nvim
+  set -gx EDITOR ~/bin/nvim12
   # path
 
   set -gx PATH /opt/homebrew/bin/ $PATH

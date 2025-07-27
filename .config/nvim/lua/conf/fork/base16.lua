@@ -168,14 +168,14 @@ local H = {}
 ---                                    -- needs `palette` field present
 --- <
 MiniBase16.setup = function(config)
-  -- Export module
-  _G.MiniBase16 = MiniBase16
+	-- Export module
+	_G.MiniBase16 = MiniBase16
 
-  -- Setup config
-  config = H.setup_config(config)
+	-- Setup config
+	config = H.setup_config(config)
 
-  -- Apply config
-  H.apply_config(config)
+	-- Apply config
+	H.apply_config(config)
 end
 
 --- Module config
@@ -203,19 +203,19 @@ end
 ---   })
 --- <
 MiniBase16.config = {
-  -- Table with names from `base00` to `base0F` and values being strings of
-  -- HEX colors with format "#RRGGBB". NOTE: this should be explicitly
-  -- supplied in `setup()`.
-  palette = nil,
+	-- Table with names from `base00` to `base0F` and values being strings of
+	-- HEX colors with format "#RRGGBB". NOTE: this should be explicitly
+	-- supplied in `setup()`.
+	palette = nil,
 
-  -- Whether to support cterm colors. Can be boolean, `nil` (same as
-  -- `false`), or table with cterm colors. See `setup()` documentation for
-  -- more information.
-  use_cterm = nil,
+	-- Whether to support cterm colors. Can be boolean, `nil` (same as
+	-- `false`), or table with cterm colors. See `setup()` documentation for
+	-- more information.
+	use_cterm = nil,
 
-  -- Plugin integrations. Use `default = false` to disable all integrations.
-  -- Also can be set per plugin (see |MiniBase16.config|).
-  plugins = { default = true },
+	-- Plugin integrations. Use `default = false` to disable all integrations.
+	-- Also can be set per plugin (see |MiniBase16.config|).
+	plugins = { default = true },
 }
 --minidoc_afterlines_end
 
@@ -274,45 +274,49 @@ MiniBase16.config = {
 ---   require('mini.base16').setup({ palette = p })
 --- <
 MiniBase16.mini_palette = function(background, foreground, accent_chroma)
-  H.validate_hex(background, 'background')
-  H.validate_hex(foreground, 'foreground')
-  if accent_chroma and not (type(accent_chroma) == 'number' and accent_chroma >= 0) then
-    error('(mini.base16) `accent_chroma` should be a positive number or `nil`.')
-  end
-  local bg, fg = H.hex2lch(background), H.hex2lch(foreground)
-  accent_chroma = accent_chroma or fg.c
+	H.validate_hex(background, "background")
+	H.validate_hex(foreground, "foreground")
+	if accent_chroma and not (type(accent_chroma) == "number" and accent_chroma >= 0) then
+		error("(mini.base16) `accent_chroma` should be a positive number or `nil`.")
+	end
+	local bg, fg = H.hex2lch(background), H.hex2lch(foreground)
+	accent_chroma = accent_chroma or fg.c
 
-  local palette = {}
+	local palette = {}
 
-  -- Target lightness values
-  -- Justification for skewness towards foreground in focus is mainly because
-  -- it will be paired with foreground lightness and used for text.
-  local focus_l = 0.4 * bg.l + 0.6 * fg.l
-  local edge_l = fg.l > 50 and 99 or 1
+	-- Target lightness values
+	-- Justification for skewness towards foreground in focus is mainly because
+	-- it will be paired with foreground lightness and used for text.
+	local focus_l = 0.4 * bg.l + 0.6 * fg.l
+	local edge_l = fg.l > 50 and 99 or 1
 
-  -- Background colors
-  local bg_step = (focus_l - bg.l) / 3
-  palette[1] = { l = bg.l + 0 * bg_step, c = bg.c, h = bg.h }
-  palette[2] = { l = bg.l + 1 * bg_step, c = bg.c, h = bg.h }
-  palette[3] = { l = bg.l + 2 * bg_step, c = bg.c, h = bg.h }
-  palette[4] = { l = bg.l + 3 * bg_step, c = bg.c, h = bg.h }
+	-- Background colors
+	local bg_step = (focus_l - bg.l) / 3
+	palette[1] = { l = bg.l + 0 * bg_step, c = bg.c, h = bg.h }
+	palette[2] = { l = bg.l + 1 * bg_step, c = bg.c, h = bg.h }
+	palette[3] = { l = bg.l + 2 * bg_step, c = bg.c, h = bg.h }
+	palette[4] = { l = bg.l + 3 * bg_step, c = bg.c, h = bg.h }
 
-  -- Foreground colors Possible negative value of `palette[5].l` will be
-  -- handled in future conversion to hex.
-  local fg_step = (edge_l - fg.l) / 2
-  palette[5] = { l = fg.l - 1 * fg_step, c = fg.c, h = fg.h }
-  palette[6] = { l = fg.l + 0 * fg_step, c = fg.c, h = fg.h }
-  palette[7] = { l = fg.l + 1 * fg_step, c = fg.c, h = fg.h }
-  palette[8] = { l = fg.l + 2 * fg_step, c = fg.c, h = fg.h }
+	-- Foreground colors Possible negative value of `palette[5].l` will be
+	-- handled in future conversion to hex.
+	local fg_step = (edge_l - fg.l) / 2
+	palette[5] = { l = fg.l - 1 * fg_step, c = fg.c, h = fg.h }
+	palette[6] = { l = fg.l + 0 * fg_step, c = fg.c, h = fg.h }
+	palette[7] = { l = fg.l + 1 * fg_step, c = fg.c, h = fg.h }
+	palette[8] = { l = fg.l + 2 * fg_step, c = fg.c, h = fg.h }
 
-  -- Accent colors
+	-- Accent colors
 
-  -- Only try to avoid color if it has positive chroma, because with zero
-  -- chroma hue is meaningless (as in polar coordinates)
-  local present_hues = {}
-  if bg.c > 0 then table.insert(present_hues, bg.h) end
-  if fg.c > 0 then table.insert(present_hues, fg.h) end
-  local hues           = H.make_different_hues(present_hues, 4)
+	-- Only try to avoid color if it has positive chroma, because with zero
+	-- chroma hue is meaningless (as in polar coordinates)
+	local present_hues = {}
+	if bg.c > 0 then
+		table.insert(present_hues, bg.h)
+	end
+	if fg.c > 0 then
+		table.insert(present_hues, fg.h)
+	end
+	local hues = H.make_different_hues(present_hues, 4)
 
   -- stylua: ignore start
   palette[9]           = { l = fg.l, c = accent_chroma, h = hues[1] }
@@ -323,17 +327,17 @@ MiniBase16.mini_palette = function(background, foreground, accent_chroma)
   palette[14]          = { l = fg.l, c = accent_chroma, h = hues[3] }
   palette[15]          = { l = fg.l, c = accent_chroma, h = hues[4] }
   palette[16]          = { l = focus_l, c = accent_chroma, h = hues[3] }
-  -- stylua: ignore end
+	-- stylua: ignore end
 
-  -- Convert to base16 palette
-  local base16_palette = {}
-  for i, lch in ipairs(palette) do
-    local name = H.base16_names[i]
-    -- It is ensured in `lch2hex` that only valid HEX values are produced
-    base16_palette[name] = H.lch2hex(lch)
-  end
+	-- Convert to base16 palette
+	local base16_palette = {}
+	for i, lch in ipairs(palette) do
+		local name = H.base16_names[i]
+		-- It is ensured in `lch2hex` that only valid HEX values are produced
+		base16_palette[name] = H.lch2hex(lch)
+	end
 
-  return base16_palette
+	return base16_palette
 end
 
 --- Converts palette with RGB colors to terminal colors
@@ -345,12 +349,14 @@ end
 ---
 ---@return table Table with base16 palette using |highlight-cterm|.
 MiniBase16.rgb_palette_to_cterm_palette = function(palette)
-  H.validate_base16_palette(palette, 'palette')
+	H.validate_base16_palette(palette, "palette")
 
-  -- Create cterm palette only when it is needed to decrease load time
-  H.ensure_cterm_palette()
+	-- Create cterm palette only when it is needed to decrease load time
+	H.ensure_cterm_palette()
 
-  return vim.tbl_map(function(hex) return H.nearest_rgb_id(H.hex2rgb(hex), H.cterm_palette) end, palette)
+	return vim.tbl_map(function(hex)
+		return H.nearest_rgb_id(H.hex2rgb(hex), H.cterm_palette)
+	end, palette)
 end
 
 -- Helper data ================================================================
@@ -360,108 +366,114 @@ H.default_config = vim.deepcopy(MiniBase16.config)
 -- Helper functionality =======================================================
 -- Settings -------------------------------------------------------------------
 H.setup_config = function(config)
-  H.check_type('config', config, 'table', true)
-  config = vim.tbl_deep_extend('force', vim.deepcopy(H.default_config), config or {})
+	H.check_type("config", config, "table", true)
+	config = vim.tbl_deep_extend("force", vim.deepcopy(H.default_config), config or {})
 
-  -- Validate settings
-  H.validate_base16_palette(config.palette, 'config.palette')
-  H.validate_use_cterm(config.use_cterm, 'config.use_cterm')
-  H.check_type('plugins', config.plugins, 'table')
+	-- Validate settings
+	H.validate_base16_palette(config.palette, "config.palette")
+	H.validate_use_cterm(config.use_cterm, "config.use_cterm")
+	H.check_type("plugins", config.plugins, "table")
 
-  return config
+	return config
 end
 
 H.apply_config = function(config)
-  MiniBase16.config = config
+	MiniBase16.config = config
 
-  H.apply_palette(config.palette, config.use_cterm)
+	H.apply_palette(config.palette, config.use_cterm)
 end
 
 -- Validators -----------------------------------------------------------------
 H.base16_names = {
-  'base00',
-  'base01',
-  'base02',
-  'base03',
-  'base04',
-  'base05',
-  'base06',
-  'base07',
-  'base08',
-  'base09',
-  'base0A',
-  'base0B',
-  'base0C',
-  'base0D',
-  'base0E',
-  'base0F',
+	"base00",
+	"base01",
+	"base02",
+	"base03",
+	"base04",
+	"base05",
+	"base06",
+	"base07",
+	"base08",
+	"base09",
+	"base0A",
+	"base0B",
+	"base0C",
+	"base0D",
+	"base0E",
+	"base0F",
 }
 
 H.validate_base16_palette = function(x, x_name)
-  if type(x) ~= 'table' then error(string.format('(mini.base16) `%s` is not a table.', x_name)) end
+	if type(x) ~= "table" then
+		error(string.format("(mini.base16) `%s` is not a table.", x_name))
+	end
 
-  for _, color_name in pairs(H.base16_names) do
-    local c = x[color_name]
-    if c == nil then
-      local msg = string.format('(mini.base16) `%s` does not have value %s.', x_name, color_name)
-      error(msg)
-    end
-    H.validate_hex(c, string.format('%s.%s', x_name, color_name))
-  end
+	for _, color_name in pairs(H.base16_names) do
+		local c = x[color_name]
+		if c == nil then
+			local msg = string.format("(mini.base16) `%s` does not have value %s.", x_name, color_name)
+			error(msg)
+		end
+		H.validate_hex(c, string.format("%s.%s", x_name, color_name))
+	end
 
-  return true
+	return true
 end
 
 H.validate_use_cterm = function(x, x_name)
-  if not x or type(x) == 'boolean' then return true end
+	if not x or type(x) == "boolean" then
+		return true
+	end
 
-  if type(x) ~= 'table' then
-    local msg = string.format('(mini.base16) `%s` should be boolean or table with cterm colors.', x_name)
-    error(msg)
-  end
+	if type(x) ~= "table" then
+		local msg = string.format("(mini.base16) `%s` should be boolean or table with cterm colors.", x_name)
+		error(msg)
+	end
 
-  for _, color_name in pairs(H.base16_names) do
-    local c = x[color_name]
-    if c == nil then
-      local msg = string.format('(mini.base16) `%s` does not have value %s.', x_name, color_name)
-      error(msg)
-    end
-    if not (type(c) == 'number' and 0 <= c and c <= 255) then
-      local msg = string.format('(mini.base16) `%s.%s` is not a cterm color.', x_name, color_name)
-      error(msg)
-    end
-  end
+	for _, color_name in pairs(H.base16_names) do
+		local c = x[color_name]
+		if c == nil then
+			local msg = string.format("(mini.base16) `%s` does not have value %s.", x_name, color_name)
+			error(msg)
+		end
+		if not (type(c) == "number" and 0 <= c and c <= 255) then
+			local msg = string.format("(mini.base16) `%s.%s` is not a cterm color.", x_name, color_name)
+			error(msg)
+		end
+	end
 
-  return true
+	return true
 end
 
 H.validate_hex = function(x, x_name)
-  local is_hex = type(x) == 'string' and x:len() == 7 and x:sub(1, 1) == '#' and (tonumber(x:sub(2), 16) ~= nil)
+	local is_hex = type(x) == "string" and x:len() == 7 and x:sub(1, 1) == "#" and (tonumber(x:sub(2), 16) ~= nil)
 
-  if not is_hex then
-    local msg = string.format('(mini.base16) `%s` is not a HEX color (string "#RRGGBB").', x_name)
-    error(msg)
-  end
+	if not is_hex then
+		local msg = string.format('(mini.base16) `%s` is not a HEX color (string "#RRGGBB").', x_name)
+		error(msg)
+	end
 
-  return true
+	return true
 end
 
 -- Highlighting ---------------------------------------------------------------
 H.apply_palette = function(palette, use_cterm)
-  -- Prepare highlighting application. Notes:
-  -- - Clear current highlight only if other theme was loaded previously.
-  -- - No need to `syntax reset` because *all* syntax groups are defined later.
-  if vim.g.colors_name then vim.cmd('highlight clear') end
-  -- As this doesn't create colorscheme, don't store any name. Not doing it
-  -- might cause some issues with `syntax on`.
-  vim.g.colors_name = nil
+	-- Prepare highlighting application. Notes:
+	-- - Clear current highlight only if other theme was loaded previously.
+	-- - No need to `syntax reset` because *all* syntax groups are defined later.
+	if vim.g.colors_name then
+		vim.cmd("highlight clear")
+	end
+	-- As this doesn't create colorscheme, don't store any name. Not doing it
+	-- might cause some issues with `syntax on`.
+	vim.g.colors_name = nil
 
-  local p, hi
-  if use_cterm then
-    p, hi = H.make_compound_palette(palette, use_cterm), H.highlight_both
-  else
-    p, hi = palette, H.highlight_gui
-  end
+	local p, hi
+	if use_cterm then
+		p, hi = H.make_compound_palette(palette, use_cterm), H.highlight_both
+	else
+		p, hi = palette, H.highlight_gui
+	end
 
   -- NOTE: recommendations for adding new highlight groups:
   -- - Put all related groups (like for new plugin) in single paragraph.
@@ -623,11 +635,11 @@ H.apply_palette = function(palette, use_cterm)
   hi('DiagnosticOk', { fg = p.base0B, bg = nil, attr = nil, sp = nil })
   hi('DiagnosticWarn', { fg = p.base0E, bg = nil, attr = nil, sp = nil })
 
-  hi('DiagnosticFloatingError', { fg = p.base08, bg = p.base01, attr = nil, sp = nil })
-  hi('DiagnosticFloatingHint', { fg = p.base0D, bg = p.base01, attr = nil, sp = nil })
-  hi('DiagnosticFloatingInfo', { fg = p.base0C, bg = p.base01, attr = nil, sp = nil })
-  hi('DiagnosticFloatingOk', { fg = p.base0B, bg = p.base01, attr = nil, sp = nil })
-  hi('DiagnosticFloatingWarn', { fg = p.base0E, bg = p.base01, attr = nil, sp = nil })
+  hi('DiagnosticFloatingError', { fg = p.base08, bg = nil, attr = nil, sp = nil })
+  hi('DiagnosticFloatingHint', { fg = p.base0D, bg = nil, attr = nil, sp = nil })
+  hi('DiagnosticFloatingInfo', { fg = p.base0C, bg = nil, attr = nil, sp = nil })
+  hi('DiagnosticFloatingOk', { fg = p.base0B, bg = nil, attr = nil, sp = nil })
+  hi('DiagnosticFloatingWarn', { fg = p.base0E, bg = nil, attr = nil, sp = nil })
 
   hi('DiagnosticSignError', { link = 'DiagnosticFloatingError' })
   hi('DiagnosticSignHint', { link = 'DiagnosticFloatingHint' })
@@ -1333,117 +1345,121 @@ H.apply_palette = function(palette, use_cterm)
     hi('MasonMutedBlock', { fg = p.base00, bg = p.base03, attr = nil, sp = nil })
     hi('MasonMutedBlockBold', { fg = p.base00, bg = p.base03, attr = 'bold', sp = nil })
   end
-  -- stylua: ignore end
+	-- stylua: ignore end
 
-  -- Terminal colors
-  vim.g.terminal_color_0 = palette.base00
-  vim.g.terminal_color_1 = palette.base08
-  vim.g.terminal_color_2 = palette.base0B
-  vim.g.terminal_color_3 = palette.base0A
-  vim.g.terminal_color_4 = palette.base0D
-  vim.g.terminal_color_5 = palette.base0E
-  vim.g.terminal_color_6 = palette.base0C
-  vim.g.terminal_color_7 = palette.base05
-  vim.g.terminal_color_8 = palette.base03
-  vim.g.terminal_color_9 = palette.base08
-  vim.g.terminal_color_10 = palette.base0B
-  vim.g.terminal_color_11 = palette.base0A
-  vim.g.terminal_color_12 = palette.base0D
-  vim.g.terminal_color_13 = palette.base0E
-  vim.g.terminal_color_14 = palette.base0C
-  vim.g.terminal_color_15 = palette.base07
+	-- Terminal colors
+	vim.g.terminal_color_0 = palette.base00
+	vim.g.terminal_color_1 = palette.base08
+	vim.g.terminal_color_2 = palette.base0B
+	vim.g.terminal_color_3 = palette.base0A
+	vim.g.terminal_color_4 = palette.base0D
+	vim.g.terminal_color_5 = palette.base0E
+	vim.g.terminal_color_6 = palette.base0C
+	vim.g.terminal_color_7 = palette.base05
+	vim.g.terminal_color_8 = palette.base03
+	vim.g.terminal_color_9 = palette.base08
+	vim.g.terminal_color_10 = palette.base0B
+	vim.g.terminal_color_11 = palette.base0A
+	vim.g.terminal_color_12 = palette.base0D
+	vim.g.terminal_color_13 = palette.base0E
+	vim.g.terminal_color_14 = palette.base0C
+	vim.g.terminal_color_15 = palette.base07
 end
 
 H.has_integration = function(name)
-  local entry = MiniBase16.config.plugins[name]
-  if entry == nil then return MiniBase16.config.plugins.default end
-  return entry
+	local entry = MiniBase16.config.plugins[name]
+	if entry == nil then
+		return MiniBase16.config.plugins.default
+	end
+	return entry
 end
 
 H.highlight_gui = function(group, args)
-  -- NOTE: using `string.format` instead of gradually growing string with `..`
-  -- is faster. Crude estimate for this particular case: whole colorscheme
-  -- loading decreased from ~3.6ms to ~3.0ms, i.e. by about 20%.
-  local command
-  if args.link ~= nil then
-    command = string.format('highlight! link %s %s', group, args.link)
-  else
-    command = string.format(
-      'highlight %s guifg=%s guibg=%s gui=%s guisp=%s blend=%s',
-      group,
-      args.fg or 'NONE',
-      args.bg or 'NONE',
-      args.attr or 'NONE',
-      args.sp or 'NONE',
-      args.blend or 'NONE'
-    )
-  end
-  vim.cmd(command)
+	-- NOTE: using `string.format` instead of gradually growing string with `..`
+	-- is faster. Crude estimate for this particular case: whole colorscheme
+	-- loading decreased from ~3.6ms to ~3.0ms, i.e. by about 20%.
+	local command
+	if args.link ~= nil then
+		command = string.format("highlight! link %s %s", group, args.link)
+	else
+		command = string.format(
+			"highlight %s guifg=%s guibg=%s gui=%s guisp=%s blend=%s",
+			group,
+			args.fg or "NONE",
+			args.bg or "NONE",
+			args.attr or "NONE",
+			args.sp or "NONE",
+			args.blend or "NONE"
+		)
+	end
+	vim.cmd(command)
 end
 
 H.highlight_both = function(group, args)
-  local command
-  if args.link ~= nil then
-    command = string.format('highlight! link %s %s', group, args.link)
-  else
-    command = string.format(
-      'highlight %s guifg=%s ctermfg=%s guibg=%s ctermbg=%s gui=%s cterm=%s guisp=%s blend=%s',
-      group,
-      args.fg and args.fg.gui or 'NONE',
-      args.fg and args.fg.cterm or 'NONE',
-      args.bg and args.bg.gui or 'NONE',
-      args.bg and args.bg.cterm or 'NONE',
-      args.attr or 'NONE',
-      args.attr or 'NONE',
-      args.sp and args.sp.gui or 'NONE',
-      args.blend or 'NONE'
-    )
-  end
-  vim.cmd(command)
+	local command
+	if args.link ~= nil then
+		command = string.format("highlight! link %s %s", group, args.link)
+	else
+		command = string.format(
+			"highlight %s guifg=%s ctermfg=%s guibg=%s ctermbg=%s gui=%s cterm=%s guisp=%s blend=%s",
+			group,
+			args.fg and args.fg.gui or "NONE",
+			args.fg and args.fg.cterm or "NONE",
+			args.bg and args.bg.gui or "NONE",
+			args.bg and args.bg.cterm or "NONE",
+			args.attr or "NONE",
+			args.attr or "NONE",
+			args.sp and args.sp.gui or "NONE",
+			args.blend or "NONE"
+		)
+	end
+	vim.cmd(command)
 end
 
 -- Compound (gui and cterm) palette -------------------------------------------
 H.make_compound_palette = function(palette, use_cterm)
-  local cterm_table = use_cterm
-  if type(use_cterm) == 'boolean' then cterm_table = MiniBase16.rgb_palette_to_cterm_palette(palette) end
+	local cterm_table = use_cterm
+	if type(use_cterm) == "boolean" then
+		cterm_table = MiniBase16.rgb_palette_to_cterm_palette(palette)
+	end
 
-  local res = {}
-  for name, _ in pairs(palette) do
-    res[name] = { gui = palette[name], cterm = cterm_table[name] }
-  end
-  return res
+	local res = {}
+	for name, _ in pairs(palette) do
+		res[name] = { gui = palette[name], cterm = cterm_table[name] }
+	end
+	return res
 end
 
 -- Optimal scales. Make a set of equally spaced hues which are as different to
 -- present hues as possible
 H.make_different_hues = function(present_hues, n)
-  local max_offset = math.floor(360 / n + 0.5)
+	local max_offset = math.floor(360 / n + 0.5)
 
-  local dist, best_dist = nil, -math.huge
-  local best_hues, new_hues
+	local dist, best_dist = nil, -math.huge
+	local best_hues, new_hues
 
-  for offset = 0, max_offset - 1, 1 do
-    new_hues = H.make_hue_scale(n, offset)
+	for offset = 0, max_offset - 1, 1 do
+		new_hues = H.make_hue_scale(n, offset)
 
-    -- Compute distance as usual 'minimum distance' between two sets
-    dist = H.dist_circle_set(new_hues, present_hues)
+		-- Compute distance as usual 'minimum distance' between two sets
+		dist = H.dist_circle_set(new_hues, present_hues)
 
-    -- Decide if it is the best
-    if dist > best_dist then
-      best_hues, best_dist = new_hues, dist
-    end
-  end
+		-- Decide if it is the best
+		if dist > best_dist then
+			best_hues, best_dist = new_hues, dist
+		end
+	end
 
-  return best_hues
+	return best_hues
 end
 
 H.make_hue_scale = function(n, offset)
-  local step = math.floor(360 / n + 0.5)
-  local res = {}
-  for i = 0, n - 1, 1 do
-    table.insert(res, (offset + i * step) % 360)
-  end
-  return res
+	local step = math.floor(360 / n + 0.5)
+	local res = {}
+	for i = 0, n - 1, 1 do
+		table.insert(res, (offset + i * step) % 360)
+	end
+	return res
 end
 
 -- Terminal colors ------------------------------------------------------------
@@ -1474,26 +1490,30 @@ H.cterm_first16 = {
 H.cterm_basis = { 0, 95, 135, 175, 215, 255 }
 
 H.cterm2rgb = function(i)
-  if i < 16 then return H.cterm_first16[i + 1] end
-  if 16 <= i and i <= 231 then
-    i = i - 16
-    local r = H.cterm_basis[math.floor(i / 36) % 6 + 1]
-    local g = H.cterm_basis[math.floor(i / 6) % 6 + 1]
-    local b = H.cterm_basis[i % 6 + 1]
-    return { r = r, g = g, b = b }
-  end
-  if 232 <= i and i <= 255 then
-    local c = 8 + (i - 232) * 10
-    return { r = c, g = c, b = c }
-  end
+	if i < 16 then
+		return H.cterm_first16[i + 1]
+	end
+	if 16 <= i and i <= 231 then
+		i = i - 16
+		local r = H.cterm_basis[math.floor(i / 36) % 6 + 1]
+		local g = H.cterm_basis[math.floor(i / 6) % 6 + 1]
+		local b = H.cterm_basis[i % 6 + 1]
+		return { r = r, g = g, b = b }
+	end
+	if 232 <= i and i <= 255 then
+		local c = 8 + (i - 232) * 10
+		return { r = c, g = c, b = c }
+	end
 end
 
 H.ensure_cterm_palette = function()
-  if H.cterm_palette then return end
-  H.cterm_palette = {}
-  for i = 0, 255 do
-    H.cterm_palette[i] = H.cterm2rgb(i)
-  end
+	if H.cterm_palette then
+		return
+	end
+	H.cterm_palette = {}
+	for i = 0, 255 do
+		H.cterm_palette[i] = H.cterm2rgb(i)
+	end
 end
 
 -- Color conversion -----------------------------------------------------------
@@ -1502,59 +1522,59 @@ end
 
 -- HEX <-> CIELCh(uv)
 H.hex2lch = function(hex)
-  local res = hex
-  for _, f in pairs({ H.hex2rgb, H.rgb2xyz, H.xyz2luv, H.luv2lch }) do
-    res = f(res)
-  end
-  return res
+	local res = hex
+	for _, f in pairs({ H.hex2rgb, H.rgb2xyz, H.xyz2luv, H.luv2lch }) do
+		res = f(res)
+	end
+	return res
 end
 
 H.lch2hex = function(lch)
-  local res = lch
-  for _, f in pairs({ H.lch2luv, H.luv2xyz, H.xyz2rgb, H.rgb2hex }) do
-    res = f(res)
-  end
-  return res
+	local res = lch
+	for _, f in pairs({ H.lch2luv, H.luv2xyz, H.xyz2rgb, H.rgb2hex }) do
+		res = f(res)
+	end
+	return res
 end
 
 -- HEX <-> RGB
 H.hex2rgb = function(hex)
-  local dec = tonumber(hex:sub(2), 16)
+	local dec = tonumber(hex:sub(2), 16)
 
-  local b = math.fmod(dec, 256)
-  local g = math.fmod((dec - b) / 256, 256)
-  local r = math.floor(dec / 65536)
+	local b = math.fmod(dec, 256)
+	local g = math.fmod((dec - b) / 256, 256)
+	local r = math.floor(dec / 65536)
 
-  return { r = r, g = g, b = b }
+	return { r = r, g = g, b = b }
 end
 
 H.rgb2hex = function(rgb)
-  -- Round and trim values
-  local t = vim.tbl_map(function(x)
-    x = math.min(math.max(x, 0), 255)
-    return math.floor(x + 0.5)
-  end, rgb)
+	-- Round and trim values
+	local t = vim.tbl_map(function(x)
+		x = math.min(math.max(x, 0), 255)
+		return math.floor(x + 0.5)
+	end, rgb)
 
-  return '#' .. string.format('%02x', t.r) .. string.format('%02x', t.g) .. string.format('%02x', t.b)
+	return "#" .. string.format("%02x", t.r) .. string.format("%02x", t.g) .. string.format("%02x", t.b)
 end
 
 -- RGB <-> XYZ
 H.rgb2xyz = function(rgb)
-  local t = vim.tbl_map(function(c)
-    c = c / 255
-    if c > 0.04045 then
-      c = ((c + 0.055) / 1.055) ^ 2.4
-    else
-      c = c / 12.92
-    end
-    return 100 * c
-  end, rgb)
+	local t = vim.tbl_map(function(c)
+		c = c / 255
+		if c > 0.04045 then
+			c = ((c + 0.055) / 1.055) ^ 2.4
+		else
+			c = c / 12.92
+		end
+		return 100 * c
+	end, rgb)
 
-  -- Source of better matrix: http://brucelindbloom.com/index.html?Eqn_RGB_XYZ_Matrix.html
-  local x = 0.41246 * t.r + 0.35757 * t.g + 0.18043 * t.b
-  local y = 0.21267 * t.r + 0.71515 * t.g + 0.07217 * t.b
-  local z = 0.01933 * t.r + 0.11919 * t.g + 0.95030 * t.b
-  return { x = x, y = y, z = z }
+	-- Source of better matrix: http://brucelindbloom.com/index.html?Eqn_RGB_XYZ_Matrix.html
+	local x = 0.41246 * t.r + 0.35757 * t.g + 0.18043 * t.b
+	local y = 0.21267 * t.r + 0.71515 * t.g + 0.07217 * t.b
+	local z = 0.01933 * t.r + 0.11919 * t.g + 0.95030 * t.b
+	return { x = x, y = y, z = z }
 end
 
 H.xyz2rgb = function(xyz)
@@ -1563,21 +1583,21 @@ H.xyz2rgb = function(xyz)
   local r = 3.24045 * xyz.x - 1.53713 * xyz.y - 0.49853 * xyz.z
   local g = -0.96927 * xyz.x + 1.87601 * xyz.y + 0.04155 * xyz.z
   local b = 0.05564 * xyz.x - 0.20403 * xyz.y + 1.05722 * xyz.z
-  -- stylua: ignore end
+	-- stylua: ignore end
 
-  return vim.tbl_map(function(c)
-    c = c / 100
-    if c > 0.0031308 then
-      c = 1.055 * (c ^ (1 / 2.4)) - 0.055
-    else
-      c = 12.92 * c
-    end
-    return 255 * c
-  end, {
-    r = r,
-    g = g,
-    b = b,
-  })
+	return vim.tbl_map(function(c)
+		c = c / 100
+		if c > 0.0031308 then
+			c = 1.055 * (c ^ (1 / 2.4)) - 0.055
+		else
+			c = 12.92 * c
+		end
+		return 255 * c
+	end, {
+		r = r,
+		g = g,
+		b = b,
+	})
 end
 
 -- XYZ <-> CIELuv
@@ -1586,103 +1606,113 @@ H.ref_u = (4 * 95.047) / (95.047 + (15 * 100) + (3 * 108.883))
 H.ref_v = (9 * 100) / (95.047 + (15 * 100) + (3 * 108.883))
 
 H.xyz2luv = function(xyz)
-  local x, y, z = xyz.x, xyz.y, xyz.z
-  if x + y + z == 0 then return { l = 0, u = 0, v = 0 } end
+	local x, y, z = xyz.x, xyz.y, xyz.z
+	if x + y + z == 0 then
+		return { l = 0, u = 0, v = 0 }
+	end
 
-  local var_u = 4 * x / (x + 15 * y + 3 * z)
-  local var_v = 9 * y / (x + 15 * y + 3 * z)
-  local var_y = y / 100
-  if var_y > 0.008856 then
-    var_y = var_y ^ (1 / 3)
-  else
-    var_y = (7.787 * var_y) + (16 / 116)
-  end
+	local var_u = 4 * x / (x + 15 * y + 3 * z)
+	local var_v = 9 * y / (x + 15 * y + 3 * z)
+	local var_y = y / 100
+	if var_y > 0.008856 then
+		var_y = var_y ^ (1 / 3)
+	else
+		var_y = (7.787 * var_y) + (16 / 116)
+	end
 
-  local l = (116 * var_y) - 16
-  local u = 13 * l * (var_u - H.ref_u)
-  local v = 13 * l * (var_v - H.ref_v)
-  return { l = l, u = u, v = v }
+	local l = (116 * var_y) - 16
+	local u = 13 * l * (var_u - H.ref_u)
+	local v = 13 * l * (var_v - H.ref_v)
+	return { l = l, u = u, v = v }
 end
 
 H.luv2xyz = function(luv)
-  if luv.l == 0 then return { x = 0, y = 0, z = 0 } end
+	if luv.l == 0 then
+		return { x = 0, y = 0, z = 0 }
+	end
 
-  local var_y = (luv.l + 16) / 116
-  if var_y ^ 3 > 0.008856 then
-    var_y = var_y ^ 3
-  else
-    var_y = (var_y - 16 / 116) / 7.787
-  end
+	local var_y = (luv.l + 16) / 116
+	if var_y ^ 3 > 0.008856 then
+		var_y = var_y ^ 3
+	else
+		var_y = (var_y - 16 / 116) / 7.787
+	end
 
-  local var_u = luv.u / (13 * luv.l) + H.ref_u
-  local var_v = luv.v / (13 * luv.l) + H.ref_v
+	local var_u = luv.u / (13 * luv.l) + H.ref_u
+	local var_v = luv.v / (13 * luv.l) + H.ref_v
 
-  local y = var_y * 100
-  local x = -(9 * y * var_u) / ((var_u - 4) * var_v - var_u * var_v)
-  local z = (9 * y - 15 * var_v * y - var_v * x) / (3 * var_v)
-  return { x = x, y = y, z = z }
+	local y = var_y * 100
+	local x = -(9 * y * var_u) / ((var_u - 4) * var_v - var_u * var_v)
+	local z = (9 * y - 15 * var_v * y - var_v * x) / (3 * var_v)
+	return { x = x, y = y, z = z }
 end
 
 -- CIELuv <-> CIELCh(uv)
 H.tau = 2 * math.pi
 
 H.luv2lch = function(luv)
-  local c = math.sqrt(luv.u ^ 2 + luv.v ^ 2)
-  local h
-  if c == 0 then
-    h = 0
-  else
-    -- Convert [-pi, pi] radians to [0, 360] degrees
-    h = (math.atan2(luv.v, luv.u) % H.tau) * 360 / H.tau
-  end
-  return { l = luv.l, c = c, h = h }
+	local c = math.sqrt(luv.u ^ 2 + luv.v ^ 2)
+	local h
+	if c == 0 then
+		h = 0
+	else
+		-- Convert [-pi, pi] radians to [0, 360] degrees
+		h = (math.atan2(luv.v, luv.u) % H.tau) * 360 / H.tau
+	end
+	return { l = luv.l, c = c, h = h }
 end
 
 H.lch2luv = function(lch)
-  local angle = lch.h * H.tau / 360
-  local u = lch.c * math.cos(angle)
-  local v = lch.c * math.sin(angle)
-  return { l = lch.l, u = u, v = v }
+	local angle = lch.h * H.tau / 360
+	local u = lch.c * math.cos(angle)
+	local v = lch.c * math.sin(angle)
+	return { l = lch.l, u = u, v = v }
 end
 
 -- Distances ------------------------------------------------------------------
 H.dist_circle = function(x, y)
-  local d = math.abs(x - y) % 360
-  return d > 180 and (360 - d) or d
+	local d = math.abs(x - y) % 360
+	return d > 180 and (360 - d) or d
 end
 
 H.dist_circle_set = function(set1, set2)
-  -- Minimum distance between all pairs
-  local dist = math.huge
-  local d
-  for _, x in pairs(set1) do
-    for _, y in pairs(set2) do
-      d = H.dist_circle(x, y)
-      if dist > d then dist = d end
-    end
-  end
-  return dist
+	-- Minimum distance between all pairs
+	local dist = math.huge
+	local d
+	for _, x in pairs(set1) do
+		for _, y in pairs(set2) do
+			d = H.dist_circle(x, y)
+			if dist > d then
+				dist = d
+			end
+		end
+	end
+	return dist
 end
 
 H.nearest_rgb_id = function(rgb_target, rgb_palette)
-  local best_dist = math.huge
-  local best_id, dist
-  for id, rgb in pairs(rgb_palette) do
-    dist = math.abs(rgb_target.r - rgb.r) + math.abs(rgb_target.g - rgb.g) + math.abs(rgb_target.b - rgb.b)
-    if dist < best_dist then
-      best_id, best_dist = id, dist
-    end
-  end
+	local best_dist = math.huge
+	local best_id, dist
+	for id, rgb in pairs(rgb_palette) do
+		dist = math.abs(rgb_target.r - rgb.r) + math.abs(rgb_target.g - rgb.g) + math.abs(rgb_target.b - rgb.b)
+		if dist < best_dist then
+			best_id, best_dist = id, dist
+		end
+	end
 
-  return best_id
+	return best_id
 end
 
 -- Utilities ------------------------------------------------------------------
-H.error = function(msg) error('(mini.base16) ' .. msg, 0) end
+H.error = function(msg)
+	error("(mini.base16) " .. msg, 0)
+end
 
 H.check_type = function(name, val, ref, allow_nil)
-  if type(val) == ref or (ref == 'callable' and vim.is_callable(val)) or (allow_nil and val == nil) then return end
-  H.error(string.format('`%s` should be %s, not %s', name, ref, type(val)))
+	if type(val) == ref or (ref == "callable" and vim.is_callable(val)) or (allow_nil and val == nil) then
+		return
+	end
+	H.error(string.format("`%s` should be %s, not %s", name, ref, type(val)))
 end
 
 return MiniBase16

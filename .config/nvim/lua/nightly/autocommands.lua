@@ -1,0 +1,57 @@
+local augroup = vim.api.nvim_create_augroup
+
+local autocmd = vim.api.nvim_create_autocmd
+local yank_group = augroup("HighlightYank", {})
+
+autocmd("TextYankPost", {
+  group = yank_group,
+  pattern = "*",
+  callback = function()
+    vim.highlight.on_yank({
+      higroup = "IncSearch",
+      timeout = 40,
+    })
+  end,
+})
+-- From vim defaults.vim
+-- ---
+-- When editing a file, always jump to the last known cursor position.
+-- Don't do it when the position is invalid, when inside an event handler
+-- (happens when dropping a file on gvim) and for a commit message (it's
+-- likely a different one than last time).
+vim.api.nvim_create_autocmd('BufReadPost', {
+  group = yank_group,
+  callback = function(args)
+    local valid_line = vim.fn.line([['"]]) >= 1 and vim.fn.line([['"]]) < vim.fn.line('$')
+    local not_commit = vim.b[args.buf].filetype ~= 'commit'
+
+    if valid_line and not_commit then
+      vim.cmd([[normal! g`"]])
+    end
+  end,
+})
+
+local function update_tabline_visibility()
+  -- Count the number of *listed* buffers (not just any buffer)
+  local listed_buffers = vim.tbl_filter(function(buf)
+    return vim.fn.buflisted(buf) == 1
+  end, vim.api.nvim_list_bufs())
+
+  -- Show tabline only if 2 or more buffers are open
+  if #listed_buffers >= 2 then
+    vim.o.showtabline = 2  -- always show
+  else
+    vim.o.showtabline = 0  -- never show
+  end
+end
+
+-- Set up autocommands to update the tabline visibility dynamically
+vim.api.nvim_create_autocmd({ "BufAdd", "BufDelete", "BufEnter", "BufLeave" }, {
+  callback = update_tabline_visibility,
+})
+-- local MainGroup = augroup("main", {})
+-- autocmd({ "BufWritePre" }, {
+-- 	group = MainGroup,
+-- 	pattern = "*",
+-- 	command = [[%s/\s\+$//e]],
+-- })
