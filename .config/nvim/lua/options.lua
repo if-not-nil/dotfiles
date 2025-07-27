@@ -29,7 +29,7 @@ opt.tabstop = 2
 opt.shiftwidth = 2
 opt.expandtab = true
 
--- o.titlestring = '%t%( %M%)%( (%{expand("%:~:h")})%)%a (nvim)'
+-- opt.titlestring = '%t%( %M%)%( (%{expand("%:~:h")})%)%a (nvim)'
 
 -- it wont add comments
 opt.formatoptions:remove("o")

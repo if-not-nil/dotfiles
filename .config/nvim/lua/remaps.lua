@@ -4,18 +4,22 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 -- window
--- map({ "n", "x" }, "<S-w>", "<C-w>", { desc = "window command mode" })
-map("n", "<Tab>", "<cmd>bnext<CR>", { desc = "next buffer", noremap = true })
-map("n", "<S-Tab>", "<cmd>bprevious<CR>", { desc = "previous buffer", noremap = true })
+map({ "n", "x" }, "<Tab>", "<cmd>bnext<CR>", { desc = "next buffer", noremap = true })
+map({ "n", "x" }, "<S-Tab>", "<cmd>bprevious<CR>", { desc = "previous buffer", noremap = true })
 map({ "n", "x" }, "<leader>w", ":w<cr>", { desc = "write buffer" })
-map("n", "<leader>q", "<cmd>bdelete<cr>", { desc = "close current buffer" })
-
--- files
-map("n", "<C-s>", "<cmd>w<CR>", { desc = "save file" })
+vim.keymap.set({ "n", "v" }, "<leader>q", function()
+	local buffers = vim.fn.getbufinfo({ buflisted = 1 })
+	if #buffers == 1 then
+		vim.cmd("qa")
+	else
+		vim.cmd("bdelete")
+	end
+end, { desc = "close current buffer or quit if last" })
+map("t", "<C-w>", "<C-\\><C-n>")
 map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "copy entire file to clipboard" })
 
 -- clipboard
-vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "paste without yanking" })
+vim.keymap.set("x", "p", [["_dP]], { desc = "paste without yanking" })
 
 -- movement
 map({ "n", "x" }, "<C-d>", "<C-d>zz")
@@ -51,32 +55,32 @@ map("n", "<leader>j", "<cmd>!just<CR>")
 -- end)
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
-  desc = "keymap 'q' to close help/quickfix/netrw/etc windows",
-  pattern = "help,qf,netrw",
-  callback = function()
-    vim.keymap.set(
-      "n",
-      "q",
-      "<C-w>c",
-      { buffer = true, desc = "Quit (or Close) help, quickfix, netrw, etc windows" }
-    )
-  end,
+	desc = "keymap 'q' to close help/quickfix/netrw/etc windows",
+	pattern = "help,qf,netrw",
+	callback = function()
+		vim.keymap.set(
+			"n",
+			"q",
+			"<C-w>c",
+			{ buffer = true, desc = "Quit (or Close) help, quickfix, netrw, etc windows" }
+		)
+	end,
 })
 
 local function send_keys(keys, mode)
-  local replaced = vim.api.nvim_replace_termcodes(keys, true, false, true)
-  vim.api.nvim_feedkeys(replaced, mode, false)
+	local replaced = vim.api.nvim_replace_termcodes(keys, true, false, true)
+	vim.api.nvim_feedkeys(replaced, mode, false)
 end
 
 -- like the best thing ever for working with raylib
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "zig",
-  callback = function()
-    vim.keymap.set("v", "<leader>2", function()
-      send_keys("sa)hi@", "v")
-    end)
-    vim.keymap.set("v", "<leader>3", function()
-      send_keys("sa)hi@as<Right>, <Left><Left>", "v")
-    end)
-  end,
+	pattern = "zig",
+	callback = function()
+		vim.keymap.set("v", "<leader>2", function()
+			send_keys("sa)hi@", "v")
+		end)
+		vim.keymap.set("v", "<leader>3", function()
+			send_keys("sa)hi@as<Right>, <Left><Left>", "v")
+		end)
+	end,
 })

@@ -17,6 +17,7 @@ function fish_prompt
   echo -ne " "
   echo -ne (set_color white)$lambda_prompt_character(set_color normal)
   echo -ne " "
+
 end
 
 function prompt_postexec --on-event fish_postexec

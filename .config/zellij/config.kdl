@@ -141,7 +141,6 @@ keybinds clear-defaults=true {
     }
   }
   shared_except "locked" {
-    bind "Alt c" {Copy;}
     bind "Alt /" {
       LaunchOrFocusPlugin "https://github.com/karimould/zellij-forgot/releases/download/0.4.2/zellij_forgot.wasm" {
       "LOAD_ZELLIJ_BINDINGS" "true"
@@ -346,19 +345,20 @@ simplified_ui true
 
 themes {
     default {
-        fg "#d8d8d8"
-        bg "#383838"
-        black "#181818"
+        fg "#d0d0d0"
+        bg "#2b2b2b"
+        black "#101010"
         red "#ab4642"
         green "#a1b56c"
         yellow "#f7ca88"
         blue "#7cafc2"
         magenta "#ba8baf"
         cyan "#86c1b9"
-        white "#d8d8d8"
+        white "#d0d0d0"
         orange "#dc9656"
     }
 }
+// Foo
 // Choose the base input mode of zellij.
 // Default: normal
 // 
@@ -367,7 +367,7 @@ default_mode "normal"
 // Choose the path to the default shell that zellij will use for opening new panes
 // Default: $SHELL
 // 
-// default_shell "/opt/homebrew/bin/fish"
+default_shell "fish"
 
 // Choose the path to override cwd that zellij will use for opening new panes
 // 
