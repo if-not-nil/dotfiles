@@ -7,6 +7,7 @@ config = {
 	-- color_scheme = 'Default Dark (base16)',
 	enable_wayland = false,
 	hide_tab_bar_if_only_one_tab = true,
+  native_macos_fullscreen_mode = false,
 	window_padding = {
 		left = "0pt",
 		right = "0pt",

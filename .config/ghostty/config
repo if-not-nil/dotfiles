@@ -1,6 +1,6 @@
 #vim filetype=conf
-# command = /opt/homebrew/bin/fish --login --interactive
-command = ~/bin/zellij-attach.sh
+command = /opt/homebrew/bin/fish
+# command = fish
 
 # shell-integration = bash
 
@@ -56,7 +56,7 @@ keybind=cmd+shift+,=reload_config
 
 keybind = cmd+t=unbind
 keybind = cmd+n=unbind
-keybind = cmd+c=copy_to_clipboard
+# keybind = cmd+c=copy_to_clipboard
 keybind = cmd+v=paste_from_clipboard
 keybind = cmd+w=unbind
 keybind = cmd+opt+left=unbind
@@ -76,7 +76,12 @@ macos-option-as-alt = true
 keybind = alt+left=unbind
 keybind = alt+right=unbind
 
-#
+# keybind = cmd+enter=toggle_fullscreen
+keybind=cmd+backspace=text:\x15
+keybind=cmd+minus=decrease_font_size:1
+keybind=cmd+plus=increase_font_size:1
+keybind=cmd+equal=increase_font_size:1
+keybind=cmd+zero=reset_font_size
 # # Empty values are used to reset config keys to default.
 # key =
 #

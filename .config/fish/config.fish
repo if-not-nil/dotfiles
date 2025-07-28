@@ -6,6 +6,8 @@ if status is-interactive
   # path
 
   set -gx PATH /opt/homebrew/bin/ $PATH
+  set -gx PATH ~/.bun/bin $PATH
+  set -gx PATH ~/.cargo/bin/ $PATH
   set -gx PATH ~/bin/ $PATH
   set -gx PATH ~/bin/ext $PATH
   set -gx PATH ~/.local/bin $PATH
@@ -24,7 +26,8 @@ if status is-interactive
   alias tmad="tmux new-session -A -s"
   alias c="cd" 
   alias cp="cp -r"
-
+  alias cows="~/projects/cli/lunar/cows/cows.lua"
+  alias freload="source ~/.config/fish/config.fish"
 
   alias e=$EDITOR
 

@@ -5,10 +5,10 @@ local hosts = {
     "echasnovski/mini.surround",
     "echasnovski/mini.tabline",
     "uga-rosa/ccc.nvim",
+    "rafamadriz/friendly-snippets",
     "echasnovski/mini.pick",
     "echasnovski/mini.files",
     "echasnovski/mini.icons",
-    "echasnovski/mini.completion",
     "echasnovski/mini.snippets",
     "echasnovski/mini.pairs",
     "echasnovski/mini.extra",
@@ -18,13 +18,17 @@ local hosts = {
   } -- this is completely unnecessary
 }   -- however, no developers seem to be
 -- self-hosting their projects
-local packs = {}
+local packs = {
+  { src = "https://github.com/saghen/blink.cmp" },
+}
 for host, packages in pairs(hosts) do
   for _, pkg in ipairs(packages) do
     table.insert(packs, host .. pkg)
   end
 end
 vim.pack.add(packs)
+
+
 
 map("n", "<leader>Z", function()
   require("zen-mode").toggle({
@@ -49,23 +53,6 @@ map("n", "<leader>u", vim.cmd.UndotreeToggle)
 require("mini.icons").setup()
 require("mini.surround").setup()
 
--- lsp
-MiniIcons.tweak_lsp_kind()
-require('mini.completion').setup({
-  lsp_completion = {
-    -- `source_func` should be one of 'completefunc' or 'omnifunc'.
-    source_func = 'omnifunc'
-  }
-})
-
-require("mini.snippets").setup({
-  mappings = {
-    jump_next = '<C-j>',
-    jump_prev = '<C-k>',
-    stop = '<Esc>',
-  },
-})
-
 -- workflow
 require('mini.pairs').setup()
 local pick = require("mini.pick")
@@ -80,16 +67,17 @@ vim.api.nvim_create_autocmd('User', {
     vim.keymap.set('n', '<leader>e', function() MiniFiles.close() end, { buffer = args.data.buf_id, desc = 'Close' })
   end,
 })
-_G.cr_action = function()
-  -- If there is selected item in popup, accept it with <C-y>
-  if vim.fn.complete_info()['selected'] ~= -1 then return '\25' end
-  -- Fall back to plain `<CR>`. You might want to customize according
-  -- to other plugins. For example if 'mini.pairs' is set up, replace
-  -- next line with `return MiniPairs.cr()`
-  return '\r'
-end
 
-vim.keymap.set('i', '<CR>', 'v:lua.cr_action()', { expr = true })
+require("mini.snippets").setup({
+  snippets = {
+    require("mini.snippets").gen_loader.from_lang(),
+  },
+  mappings = {
+    jump_next = '<C-j>',
+    jump_prev = '<C-k>',
+    stop = '<Esc>',
+  },
+})
 map("i", '<Tab>', [[pumvisible() ? "\<C-n>" : "\<Tab>"]], { expr = true })
 map("i", '<S-Tab>', [[pumvisible() ? "\<C-p>" : "\<S-Tab>"]], { expr = true })
 map("n", "<leader>/", pick.builtin.grep_live)

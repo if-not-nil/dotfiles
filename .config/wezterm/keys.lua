@@ -27,6 +27,7 @@ return function(wezterm, config)
 
 		{ key = "w", mods = mod, action = act.CloseCurrentPane({ confirm = false }) },
 		{ key = "t", mods = mod, action = act.SpawnTab("CurrentPaneDomain") },
+    { key = "f", mods = mod_shift, action = act.ToggleFullScreen },
 
 		{ key = "[", mods = mod, action = act.MoveTabRelative(-1) },
 		{ key = "]", mods = mod, action = act.MoveTabRelative(1) },
