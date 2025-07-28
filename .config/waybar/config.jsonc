@@ -1,0 +1,49 @@
+{
+    "spacing": 4,
+		// try to keep it 4px across the config
+		"height":25,
+    "modules-left": ["hyprland/workspaces", "custom/icon", "hyprland/window"],
+    "modules-right": [ "tray", "battery", "pulseaudio", "cpu", "memory", "temperature", "clock"],
+
+		/*
+		MODULES
+		*/
+		"custom/icon": {
+        "exec": "~/.config/waybar/state",
+        "interval": "once",
+        "signal": 8
+		},
+    "tray": {
+        "spacing": 10
+    },
+    "clock": {
+        // "timezone": "America/New_York",
+        "tooltip-format": "<big>[{:%Y %B}]</big>\n<tt><small>{calendar}</small></tt>",
+        "format": "[{:%H:%M}]",
+        "format-alt": "[{:%Y-%m-%d}]"
+    },
+    "cpu": {
+        "format": "[CPU::{usage}%]",
+        "tooltip": false
+    },
+    "memory": {
+        "format": "[MEM::{used}GiB]"
+    },
+    "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        "format-critical": "[!!{temperatureC}°C!!]",
+        "format": "[{temperatureC}°C]"
+    },
+    "battery": {
+        "format": "[BAT::{capacity}%]"
+    },
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "[VOL::{volume}%]",
+        "format-muted": "[VOL: M]",
+        "on-click": "pavucontrol"
+    }
+}
+
