@@ -18,6 +18,7 @@ map("n", "K", function()
   end
 end, { desc = "diagnostics or hover" })
 map("n", "gd", vim.lsp.buf.definition)
+map("n", "<leader>l", vim.lsp.buf.format)
 
 
 require("blink.cmp").setup({
