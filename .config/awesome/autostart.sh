@@ -9,6 +9,7 @@ function run {
 
 run "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1" 
 run "nm-applet" 
+run "volumeicon"
 run "blueman-applet" 
 run "playerctld" daemon
 run "unclutter" --timeout 10 --exclude-root

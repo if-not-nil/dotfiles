@@ -116,21 +116,14 @@ local tasklist_buttons = gears.table.join(
     awful.client.focus.byidx(-1)
   end))
 
-
-
 local systray = wibox.widget.systray()
 systray:set_base_size(28)
-local volume_widget = require('widgets.volume')
 local battery = require("widgets.battery")
-
-local lain = require("lain")
-local markup = lain.util.markup
-local separators = lain.util.separators
 
 local clock = awful.widget.watch(
   "date +'%a %d %b %R'", 60,
   function(widget, stdout)
-    widget:set_markup(markup.font(theme.font, stdout))
+    widget:set_markup(stdout)
   end
 )
 local function nerd(str, dark)
@@ -151,49 +144,6 @@ local function nerd(str, dark)
     widget = wibox.widget.textbox
   }
 end
-
--- local mem = lain.widget.mem({
---   settings = function()
---     widget:set_markup(markup.font(theme.font, " " .. mem_now.used .. "MB "))
---   end
--- })
-local volume = awful.widget.watch(
-    "pactl get-sink-volume @DEFAULT_SINK@ | cut -s -d/ -f2,4; pactl get-sink-mute @DEFAULT_SINK@",
-    5, -- timeout 
-    function(widget, stdout)
-        local volume = "Volume: "
-        for v in stdout:gmatch("(%d+%%)") do volume = volume .. " " .. v end
-        if #volume == 8 then volume = "N/A" end
-        local mute = string.match(stdout, "Mute: (%S+)") or "N/A"
-
-        -- customize here
-        widget:set_markup(volume .. " " .. mute)
-    end
-)
-
--- local volume = require("widgets.volume") {
---   timeout = 5,
---   settings = function()
---     local vol = tonumber(volume_now.left) or 0
---     local icon = "󰕾"
---     if volume_now.muted == "yes" then
---       icon = "󰝟"
---     elseif vol <= 30 then
---       icon = "󰖀"
---     elseif vol <= 70 then
---       icon = "󰕾"
---     else
---       icon = "󰕿"
---     end
---     widget:set_markup(string.format(" %s %s%% ", icon, volume_now.left))
---   end
--- }
-
--- local arr_bg = separators.arrow_left(theme.bg_focus, "alpha")
--- local arr_fg = separators.arrow_left("alpha", theme.bg_focus)
-
-local arr_fg = nerd(" ")
-local arr_bg = wibox.container.background(arr_fg, theme.bg_focus)
 
 awful.screen.connect_for_each_screen(function(s)
   -- Wallpaper
@@ -240,13 +190,9 @@ awful.screen.connect_for_each_screen(function(s)
     s.mytasklist, -- Middle widget
     {             -- Right widgets
       layout = wibox.layout.fixed.horizontal,
-      arr_bg,
       systray,
-      -- nerd(" ", true),
-      volume,
       nerd(" "),
       battery,
-      arr_fg,
       clock,
       s.mylayoutbox,
     },
@@ -269,23 +215,6 @@ globalkeys = gears.table.join(
     end,
     { description = "play/pause media", group = "media" }
   ),
-  -- Volume up
-  awful.key({}, "XF86AudioRaiseVolume", function()
-    awful.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%")
-    volume.update()
-  end, { description = "increase volume", group = "media" }),
-
-  -- Volume down
-  awful.key({}, "XF86AudioLowerVolume", function()
-    awful.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%")
-    volume.update()
-  end, { description = "decrease volume", group = "media" }),
-
-  -- Mute toggle
-  awful.key({}, "XF86AudioMute", function()
-    awful.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")
-    pulse.update()
-  end, { description = "mute/unmute volume", group = "media" }),
   awful.key({}, "XF86MonBrightnessUp", function() os.execute("brightnessctl set +5%") end,
     { description = "+10%", group = "hotkeys" }),
   awful.key({}, "XF86MonBrightnessDown", function() os.execute("brightnessctl set 5%-") end,
