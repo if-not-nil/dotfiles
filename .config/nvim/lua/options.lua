@@ -1,43 +1,41 @@
-local opt = vim.opt
 -- vim.o.winborder = "rounded"
 -- o.background = "dark"
-vim.cmd.colorscheme("bark")
+-- vim.cmd.colorscheme("bark")
 
-opt.termguicolors = true
-opt.fillchars:append({ eob = " " })
-opt.number = true
-opt.relativenumber = true
-opt.signcolumn = "yes"
-opt.showmode = false
-opt.scrolloff = 5
-opt.splitbelow = false
-opt.shortmess:append("A")
-opt.shada = { "'10", "<0", "s10", "h" }
+vim.opt.termguicolors = true
+vim.opt.fillchars:append({ eob = " " })
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.signcolumn = "yes"
+vim.opt.scrolloff = 5
+vim.opt.splitbelow = false
+vim.opt.shortmess:append("A")
+vim.opt.shada = { "'10", "<0", "s10", "h" }
 vim.o.iminsert = 0
 vim.o.imsearch = 0
 vim.o.langnoremap = true
 
-opt.ignorecase = true
-opt.smartcase = true
-opt.hlsearch = false
-opt.incsearch = true
-opt.inccommand = "split"
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.hlsearch = false
+vim.opt.incsearch = true
+-- vim.opt.inccommand = "split"
 
-opt.autoindent = true
-opt.smartindent = true
-opt.tabstop = 2
-opt.shiftwidth = 2
-opt.expandtab = true
+vim.opt.autoindent = true
+vim.opt.smartindent = true
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
 
 -- opt.titlestring = '%t%( %M%)%( (%{expand("%:~:h")})%)%a (nvim)'
 
 -- it wont add comments
-opt.formatoptions:remove("o")
-opt.swapfile = false
-opt.backup = false
-opt.undofile = true
-opt.undodir = vim.fn.stdpath("data") .. "/undo"
+vim.opt.formatoptions:remove("o")
+vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.undofile = true
+vim.opt.undodir = vim.fn.stdpath("data") .. "/undo"
 
-opt.updatetime = 250
-opt.timeoutlen = 1000 -- im getting old
-opt.clipboard = "unnamedplus"
+vim.opt.updatetime = 250
+vim.opt.timeoutlen = 1000 -- im getting old
+vim.opt.clipboard = "unnamedplus"
