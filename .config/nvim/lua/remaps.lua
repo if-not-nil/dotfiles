@@ -7,25 +7,20 @@ vim.g.maplocalleader = "\\"
 map({ "n", "x" }, "<Tab>", "<cmd>bnext<CR>", { desc = "next buffer", noremap = true })
 map({ "n", "x" }, "<S-Tab>", "<cmd>bprevious<CR>", { desc = "previous buffer", noremap = true })
 map({ "n", "x" }, "<leader>w", ":w<cr>", { desc = "write buffer" })
-vim.keymap.set({ "n", "v" }, "<leader>q", function()
-  local buffers = vim.fn.getbufinfo({ buflisted = 1 })
-  if #buffers == 1 then
-    vim.cmd("qa")
-  else
-    vim.cmd("bdelete")
-  end
-end, { desc = "close current buffer or quit if last" })
+map('n', '<leader>q', ':bd<CR>', { desc = 'Close buffer' })
+map('n', '<leader>Q', ':bd!<CR>', { desc = 'Force close buffer' })
+
 map("t", "<C-w>", "<C-\\><C-n>")
-map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "copy entire file to clipboard" })
 map("n", "<leader>z", function()
   if vim.o.laststatus == 2 or vim.o.laststatus == 3 then
     vim.o.laststatus = 0
     vim.o.showtabline = 0
   else
     vim.o.laststatus = 2
-    vim.cmd("doautocmd User BufEnter")
+    vim.o.showtabline = 1
   end
 end)
+
 -- clipboard
 vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "paste without yanking" })
 

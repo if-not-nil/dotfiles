@@ -1,7 +1,7 @@
 -- https://gist.github.com/t-mart/610795fcf7998559ea80
 -- https://www.reddit.com/r/neovim/comments/1dc78r4/custom_netrw_workflow_settings_maps_etc/
 
--- vim.g.netrw_banner = 0
+vim.g.netrw_banner = 0
 vim.g.netrw_keepdir = 1
 vim.g.netrw_liststyle = 1
 vim.g.netrw_hide = 1

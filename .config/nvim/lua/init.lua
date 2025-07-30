@@ -1,31 +1,40 @@
 require("remaps")
-require("options")
 -- require("netrw")
 require("autocommands")
 local v = vim.version()
 
 if v.major == 0 and v.minor == 12 then
-  require("pack")
+    require("pack")
+    require("lsp")
 end
 
-require("lsp")
--- require("fork.base16").setup({
--- 	palette = {
--- 		base00 = "#101010",
--- 		base01 = "#202020",
--- 		base02 = "#2b2b2b",
--- 		base03 = "#505050",
--- 		base04 = "#b0b0b0",
--- 		base05 = "#d0d0d0",
--- 		base06 = "#e0e0e0",
--- 		base07 = "#fafafa",
--- 		base08 = "#ab4642",
--- 		base09 = "#dc9656",
--- 		base0A = "#f7ca88",
--- 		base0B = "#a1b56c",
--- 		base0C = "#86c1b9",
--- 		base0D = "#7cafc2",
--- 		base0E = "#ba8baf",
--- 		base0F = "#a16946",
--- 	},
--- })
+
+-- vim.cmd.colorscheme("bark")
+vim.opt.termguicolors = true
+vim.opt.fillchars:append({ eob = " " })
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.signcolumn = "yes"
+vim.opt.scrolloff = 10
+vim.opt.splitright = true
+vim.opt.shortmess:append("A")
+vim.opt.shada = { "'10", "<0", "s10", "h" }
+vim.o.iminsert = 0
+vim.o.imsearch = 0
+vim.o.langnoremap = true
+
+vim.opt.smartcase = true
+-- vim.opt.inccommand = "split"
+
+vim.opt.smartindent = true
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+vim.opt.formatoptions:remove("o")
+vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.undofile = true
+vim.opt.undodir = vim.fn.stdpath("data") .. "/undo"
+
+vim.opt.timeoutlen = 1000 -- im getting old
+vim.opt.clipboard = "unnamedplus"
