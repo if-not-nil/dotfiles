@@ -9,7 +9,7 @@ if v.major == 0 and v.minor == 12 then
 end
 
 
--- vim.cmd.colorscheme("bark")
+vim.cmd.colorscheme("bark")
 vim.opt.termguicolors = true
 vim.opt.fillchars:append({ eob = " " })
 vim.opt.number = true
@@ -23,6 +23,7 @@ vim.o.iminsert = 0
 vim.o.imsearch = 0
 vim.o.langnoremap = true
 
+vim.opt.ignorecase = true
 vim.opt.smartcase = true
 -- vim.opt.inccommand = "split"
 
