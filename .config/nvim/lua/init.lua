@@ -21,6 +21,8 @@ vim.opt.shortmess:append("A")
 vim.opt.shada = { "'10", "<0", "s10", "h" }
 vim.o.iminsert = 0
 vim.o.imsearch = 0
+vim.opt.hlsearch = false
+vim.opt.incsearch = true
 vim.o.langnoremap = true
 
 vim.opt.ignorecase = true
