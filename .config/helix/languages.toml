@@ -1,2 +1,0 @@
-[language-server.gopls.config]
-"formatting.gofumpt" = true
