@@ -6,7 +6,7 @@ vim.pack.add({
     "https://github.com/echasnovski/mini.tabline",
     "https://github.com/nvim-treesitter/nvim-treesitter",
     "https://github.com/neovim/nvim-lspconfig",
-    { src = "https://github.com/saghen/blink.cmp", version = "1.6.0" },
+    { src = "https://github.com/saghen/blink.cmp", version = "v1.6.0" },
     "https://github.com/nvim-telescope/telescope.nvim",
     "https://github.com/nvim-lua/plenary.nvim",
     "https://github.com/echasnovski/mini.extra",
@@ -51,7 +51,6 @@ require("blink.cmp").setup({
             },
         },
     },
-    fuzzy = { implementation = 'lua' },
     snippets = { preset = 'mini_snippets' }
 })
 

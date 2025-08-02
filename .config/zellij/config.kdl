@@ -170,7 +170,7 @@ keybinds clear-defaults=true {
             floating true
             move_to_focused_tab true
             cwd "/"
-            root_dirs "/home/user/projects/;/home/user/"
+            root_dirs "/home/haskell/projects/;/home/haskell/"
             session_layout "custom"
         }; SwitchToMode "normal";
     }
@@ -350,7 +350,7 @@ default_layout "custom"
 // The folder in which Zellij will look for layouts
 // (Requires restart)
 // 
-layout_dir "/home/user/.config/zellij/layouts"
+layout_dir "/home/haskell/.config/zellij/layouts"
 
 // The folder in which Zellij will look for themes
 // (Requires restart)

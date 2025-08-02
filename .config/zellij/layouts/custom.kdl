@@ -56,7 +56,7 @@ layout {
 
   default_tab_template {
     pane size=1 borderless=true {
-      plugin location="file:/home/user/.config/zellij/plugins/zjstatus.wasm" {
+      plugin location="file:/home/haskell/.config/zellij/plugins/zjstatus.wasm" {
         format_left "{mode}"
         format_center "{tabs}"
         format_right "#[fg=#83a598,bold]{session} #[fg=#b8bb26,bold]{swap_layout}"

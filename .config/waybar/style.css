@@ -34,16 +34,16 @@ window#waybar {
   opacity: 1;
 }
 
-#workspaces {
+#tags {
   background-color: transparent;
 }
 
-#workspaces button {
+#tags button {
   padding: 0 5px;
 	color: @text;
 }
 
-#workspaces button.active {
+#tags button.active {
   background-color: @accent;
   color: @invText;
   /* color: @background; */
