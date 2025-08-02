@@ -5,13 +5,14 @@
 keybinds clear-defaults=true {
   locked {
     bind "Super g" { SwitchToMode "normal"; }
-        bind "Super c" {Copy;}
+    bind "Super c" {Copy;}
   }
   shared_except "normal" "renamepane" "entersearch" "locked" {
     bind "esc" {SwitchToMode "normal";}
   }
   shared_except "locked" {
     bind "Ctrl q" { Quit; }
+    bind "Super c" {Copy;}
     bind "Alt c" {Copy;}
     bind "Super c" {Copy;}
     bind "Super t" {NewTab; }
