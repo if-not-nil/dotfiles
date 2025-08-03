@@ -5,53 +5,23 @@ vim.pack.add({
     "https://github.com/echasnovski/mini.snippets",
     "https://github.com/nvim-treesitter/nvim-treesitter",
     "https://github.com/neovim/nvim-lspconfig",
-    { src = "https://github.com/saghen/blink.cmp", version = "v1.6.0" },
     "https://github.com/nvim-telescope/telescope.nvim",
     "https://github.com/nvim-lua/plenary.nvim",
     "https://github.com/echasnovski/mini.extra",
+    "https://github.com/echasnovski/mini.icons",
     "https://github.com/echasnovski/mini.pick",
     "https://github.com/echasnovski/mini.surround",
     "https://github.com/echasnovski/mini.files",
+    "https://github.com/echasnovski/mini.completion",
     "https://github.com/rafamadriz/friendly-snippets",
     "https://github.com/mbbill/undotree",
     "https://github.com/uga-rosa/ccc.nvim",
     'https://github.com/nvim-lualine/lualine.nvim',
 })
 
+require("mini.icons").tweak_lsp_kind()
 require("statusline")
-
-require("blink.cmp").setup({
-    enabled = function()
-        return not vim.tbl_contains({ "md", "markdown" }, vim.bo.filetype)
-    end,
-
-    sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer' },
-        per_filetype = {
-            md = { 'lsp', 'snippets' },
-        },
-    },
-    keymap = {
-        ["<Tab>"] = { "select_next", "fallback" },
-        ["<S-Tab>"] = { "select_prev", "fallback" },
-        ["<CR>"] = { "accept", "fallback" }
-    },
-    signature = {
-        enabled = true,
-        window = { show_documentation = true, },
-    },
-    completion = {
-        list = { selection = { preselect = false } },
-        documentation = {
-            auto_show = true,
-            window = {
-                border = "single",
-            },
-        },
-    },
-    snippets = { preset = 'mini_snippets' }
-})
-
+require("mini.completion").setup({})
 require("mini.surround").setup()
 require("mini.files").setup({
     windows = { preview = true, width_preview = 60, }

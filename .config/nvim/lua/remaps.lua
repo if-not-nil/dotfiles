@@ -12,6 +12,11 @@ map('n', '<leader>Q', ':bd!<CR>', { desc = 'Force close buffer' })
 
 map("t", "<C-w>", "<C-\\><C-n>")
 
+map("n", "<leader>ll", function()
+  vim.opt.spell = not vim.opt.spell:get()
+end, { desc = "Toggle spell check" })
+
+
 -- almost zen mode
 map("n", "<leader>z", function()
     if vim.o.laststatus == 2 or vim.o.laststatus == 3 then
@@ -28,8 +33,11 @@ end)
 vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "paste without yanking" })
 
 -- movement
-map({ "n", "x" }, "<C-d>", "<C-d>zz")
-map({ "n", "x" }, "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "<C-f>", "<C-f>zz")
+vim.keymap.set("n", "<C-b>", "<C-b>zz")
+
 map({ "n", "x" }, "U", vim.cmd.redo, { desc = "redo" })
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv") -- Shift visual selected line down
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv") -- Shift visual selected line up
@@ -38,6 +46,9 @@ map("n", "J", "mzJ`z", { desc = "join lines and keep cursor position" })
 -- map("n", "<C-j>", "<cmd>cprev<CR>zz", { desc = "previous quickfix item" })
 map("n", "<Esc>", "<cmd>noh<CR>", { desc = "clear search highlights" })
 
+-- why does it not have the emacs keys by default
+vim.keymap.set("i", "<C-b>", "<Left>")
+vim.keymap.set("i", "<C-f>", "<Right>")
 -- Better indenting in visual mode
 vim.keymap.set("v", "<", "<gv", { desc = "Indent left and reselect" })
 vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
