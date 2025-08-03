@@ -4,7 +4,7 @@ sync_repo () {
     git pull
     git add .
     git commit -m "auto sync from ~/dotfiles/syncfile"
-    git push
+    git push -u origin main
 }
 
 echo "syncing ~/dotfiles/"
