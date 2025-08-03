@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+sync_repo () {
+    cd $1
+    git pull
+    git add .
+    git commit -m "auto sync from ~/dotfiles/syncfile"
+    git push
+}
+
+echo "syncing ~/dotfiles/"
+sync_repo ~/dotfiles/
+echo "syncing ~/notes/"
+sync_repo ~/notes/
