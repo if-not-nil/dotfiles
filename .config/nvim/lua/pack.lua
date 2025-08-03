@@ -8,6 +8,7 @@ vim.pack.add({
     "https://github.com/nvim-telescope/telescope.nvim",
     "https://github.com/nvim-lua/plenary.nvim",
     "https://github.com/echasnovski/mini.extra",
+    "https://github.com/echasnovski/mini.base16",
     "https://github.com/echasnovski/mini.icons",
     "https://github.com/echasnovski/mini.pick",
     "https://github.com/echasnovski/mini.surround",
@@ -18,6 +19,23 @@ vim.pack.add({
     "https://github.com/uga-rosa/ccc.nvim",
     'https://github.com/nvim-lualine/lualine.nvim',
 })
+
+local base16 = require("base16")
+require("mini.base16").setup({palette = base16})
+local hl = vim.api.nvim_set_hl
+
+hl(0, 'SignColumn', { fg = base16.base09, bg = nil })
+hl(0, 'CursorColumn', { fg = base16.base09, bg = nil })
+hl(0, 'FoldColumn', { fg = base16.base09, bg = nil })
+hl(0, 'LineNr', { bg = nil })
+hl(0, 'LineNrAbove', { fg = base16.base03, bg = nil })
+hl(0, 'LineNrBelow', { fg = base16.base03, bg = nil })
+hl(0, 'DiagnosticFloatingError', { fg = base16.base08, bg = base16.base00 })
+hl(0, 'DiagnosticFloatingHint', { fg = base16.base0D, bg = base16.base00 })
+hl(0, 'DiagnosticFloatingInfo', { fg = base16.base0C, bg = base16.base00 })
+hl(0, 'DiagnosticFloatingOk', { fg = base16.base0B, bg = base16.base00 })
+hl(0, 'DiagnosticFloatingWarn', { fg = base16.base0E, bg = base16.base00 })
+
 
 require("mini.icons").tweak_lsp_kind()
 require("statusline")

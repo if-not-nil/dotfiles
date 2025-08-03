@@ -1,6 +1,7 @@
 require("remaps")
 -- require("netrw")
 require("autocommands")
+
 local v = vim.version()
 
 if v.major == 0 and v.minor == 12 then
@@ -8,8 +9,7 @@ if v.major == 0 and v.minor == 12 then
     require("lsp")
 end
 
-
-vim.cmd.colorscheme("bark")
+-- vim.cmd.colorscheme("bark")
 vim.opt.termguicolors = true
 vim.opt.fillchars:append({ eob = " " })
 vim.opt.number = true
