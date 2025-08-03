@@ -49,6 +49,22 @@ window#waybar {
   /* color: @background; */
 }
 
+#workspaces {
+  background-color: transparent;
+}
+
+#workspaces button {
+  padding: 0 5px;
+	color: @text;
+}
+
+#workspaces button.active {
+  background-color: @accent;
+  color: @invText;
+  /* color: @background; */
+}
+
+
 #pulseaudio,
 #cpu,
 #memory,
