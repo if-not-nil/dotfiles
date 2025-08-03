@@ -24,6 +24,7 @@ vim.o.imsearch = 0
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 vim.o.langnoremap = true
+vim.opt.showmode = false
 
 vim.opt.ignorecase = true
 vim.opt.smartcase = true

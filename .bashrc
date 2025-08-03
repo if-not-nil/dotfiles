@@ -5,6 +5,7 @@ have() {
 }
 
 export EDITOR="nvim"
+export MANPAGER="nvim +Man!"
 
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/bin/ext:$PATH" # for stuff i didnt write and symlinks
@@ -19,6 +20,7 @@ if [[ $(uname) == "Linux" ]]; then
   alias pacman="sudo pacman"
   alias apt="sudo apt"
   alias dnf="sudo dnf"
+  alias xbpi="sudo xbps-install"
 fi
 
 # finds a bunch of caches
@@ -28,7 +30,6 @@ alias fd_caches_echo="_fd_cache_pattern -x echo {}"
 alias fd_caches_rm="_fd_cache_pattern -x rm -rf {}"
 
 alias trash="trash -v"
-have batman && alias man="batman"
 alias cows="lua ~/projects/cli/cow-tools/main.lua"
 alias e="$EDITOR"
 alias ls="ls -A --color=auto"

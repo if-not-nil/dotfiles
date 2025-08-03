@@ -3,7 +3,6 @@ local map = vim.keymap.set
 vim.pack.add({
     -- i really need this
     "https://github.com/echasnovski/mini.snippets",
-    "https://github.com/echasnovski/mini.tabline",
     "https://github.com/nvim-treesitter/nvim-treesitter",
     "https://github.com/neovim/nvim-lspconfig",
     { src = "https://github.com/saghen/blink.cmp", version = "v1.6.0" },
@@ -16,23 +15,22 @@ vim.pack.add({
     "https://github.com/rafamadriz/friendly-snippets",
     "https://github.com/mbbill/undotree",
     "https://github.com/uga-rosa/ccc.nvim",
+    'https://github.com/nvim-lualine/lualine.nvim',
 })
 
-require("mini.tabline").setup {
-    format = function(buf_id, label)
-        local suffix = vim.bo[buf_id].modified and "* " or ""
-        return MiniTabline.default_format(buf_id, label) .. suffix
-    end,
-}
--- ^n ^p to navigate and select
--- ^e to cancel
--- ^y to confirm
--- CR to select with up/down arrows, else newline
+require("statusline")
+
 require("blink.cmp").setup({
     enabled = function()
         return not vim.tbl_contains({ "md", "markdown" }, vim.bo.filetype)
     end,
-    sources = { default = { 'lsp', 'path', 'snippets', 'buffer' } },
+
+    sources = {
+        default = { 'lsp', 'path', 'snippets', 'buffer' },
+        per_filetype = {
+            md = { 'lsp', 'snippets' },
+        },
+    },
     keymap = {
         ["<Tab>"] = { "select_next", "fallback" },
         ["<S-Tab>"] = { "select_prev", "fallback" },

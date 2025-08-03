@@ -11,15 +11,18 @@ map('n', '<leader>q', ':bd<CR>', { desc = 'Close buffer' })
 map('n', '<leader>Q', ':bd!<CR>', { desc = 'Force close buffer' })
 
 map("t", "<C-w>", "<C-\\><C-n>")
+
+-- almost zen mode
 map("n", "<leader>z", function()
-  if vim.o.laststatus == 2 or vim.o.laststatus == 3 then
-    vim.o.laststatus = 0
-    vim.o.showtabline = 0
-  else
-    vim.o.laststatus = 2
-    vim.o.showtabline = 1
-  end
+    if vim.o.laststatus == 2 or vim.o.laststatus == 3 then
+        vim.o.laststatus = 0
+        vim.o.cmdheight = 0
+    else
+        vim.o.laststatus = 2
+        vim.o.cmdheight = 1
+    end
 end)
+
 
 -- clipboard
 vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "paste without yanking" })
@@ -44,19 +47,19 @@ vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
 map("n", "<leader>j", "<cmd>!just<CR>")
 
 local function send_keys(keys, mode)
-  local replaced = vim.api.nvim_replace_termcodes(keys, true, false, true)
-  vim.api.nvim_feedkeys(replaced, mode, false)
+    local replaced = vim.api.nvim_replace_termcodes(keys, true, false, true)
+    vim.api.nvim_feedkeys(replaced, mode, false)
 end
 
 -- like the best thing ever for working with raylib
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "zig",
-  callback = function()
-    vim.keymap.set("v", "<leader>2", function()
-      send_keys("sa)hi@", "v")
-    end)
-    vim.keymap.set("v", "<leader>3", function()
-      send_keys("sa)hi@as<Right>, <Left><Left>", "v")
-    end)
-  end,
+    pattern = "zig",
+    callback = function()
+        vim.keymap.set("v", "<leader>2", function()
+            send_keys("sa)hi@", "v")
+        end)
+        vim.keymap.set("v", "<leader>3", function()
+            send_keys("sa)hi@as<Right>, <Left><Left>", "v")
+        end)
+    end,
 })
