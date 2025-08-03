@@ -1,13 +1,15 @@
 #!/usr/bin/env bash
+
 sync_repo () {
-    cd $1
+    cd "$1" || exit 1
     git pull
     git add .
     git commit -m "auto sync from ~/dotfiles/syncfile"
     git push -u origin main
 }
 
-echo "syncing ~/dotfiles/"
-sync_repo ~/dotfiles/
-echo "syncing ~/notes/"
-sync_repo ~/notes/
+for dir in ~/dotfiles/ ~/notes/; do
+    echo -e "\e[1;32msyncing $dir\e[0m"
+    sync_repo "$dir"
+done
+
