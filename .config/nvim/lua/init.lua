@@ -1,16 +1,12 @@
-require("remaps")
--- require("netrw")
-require("autocommands")
-
-local v = vim.version()
-
-if v.major == 0 and v.minor == 12 then
-    require("pack")
-    require("lsp")
-end
-
 -- vim.cmd.colorscheme("bark")
+vim.diagnostic.config({
+    float = { border = "single" },
+    virtual_text = true,
+})
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 vim.opt.termguicolors = true
+vim.opt.shell = "fish"
 vim.opt.fillchars:append({ eob = " " })
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -42,3 +38,12 @@ vim.opt.undodir = vim.fn.stdpath("data") .. "/undo"
 
 vim.opt.timeoutlen = 1000 -- im getting old
 vim.opt.clipboard = "unnamedplus"
+
+require("remaps")
+require("autocommands")
+require("plugins")
+
+-- local v = vim.version()
+-- if v.major == 0 and v.minor == 12 then
+--     require("pack")
+-- end

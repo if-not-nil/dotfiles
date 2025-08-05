@@ -10,10 +10,30 @@ map({ "n", "x" }, "<leader>w", ":w<cr>", { desc = "write buffer" })
 map('n', '<leader>q', ':bd<CR>', { desc = 'Close buffer' })
 map('n', '<leader>Q', ':bd!<CR>', { desc = 'Force close buffer' })
 
-map("t", "<C-w>", "<C-\\><C-n>")
+-- vim as a terminal multiplexer lol
+map("t", "<Esc>", "<C-\\><C-n>")
+vim.keymap.set("n", "<C-w>e", "<CMD>term<CR>", { desc = "Terminal" })
+
+if vim.g.neovide then
+    local str = string.format
+
+    for i = 1, 9 do
+        vim.keymap.set("n", str("<D-%s>", i), str("%sgt", i), { desc = str("Goto tab %s", i) })
+    end
+
+    vim.keymap.set("n", "<D-0>", "<CMD>tablast<CR>", { desc = "Goto last tab" })
+    vim.keymap.set("n", "<D-w>", "<CMD>tabclose<CR>", { desc = "Goto last tab" })
+    vim.keymap.set("n", "<D-t>", "<CMD>tabnew<CR>", { desc = "Goto last tab" })
+    vim.keymap.set("n", "<D-]>", "<CMD>tabnext<CR>", { desc = "Goto next tab" })
+    vim.keymap.set("n", "<D-[>", "<CMD>tabprevious<CR>", { desc = "Goto prev tab" })
+    vim.keymap.set("n", "<D-->", "<CMD>tabm-<CR>", { desc = "Move tab to the left" })
+    vim.keymap.set("n", "<D-=>", "<CMD>tabm+<CR>", { desc = "Move tab to the right" })
+    vim.keymap.set("n", "<D-'>", "<CMD>tab split<CR>", { desc = "Clone window in new tab" })
+end
+-- multiplexer end
 
 map("n", "<leader>ll", function()
-  vim.opt.spell = not vim.opt.spell:get()
+    vim.opt.spell = not vim.opt.spell:get()
 end, { desc = "Toggle spell check" })
 
 
@@ -30,7 +50,14 @@ end)
 
 
 -- clipboard
-vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "paste without yanking" })
+-- vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "paste without yanking" })
+
+-- vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "paste without yanking" })
+-- vim.keymap.set({"n", "x", "v" }, "<leader>y", [["+y]])
+-- vim.keymap.set({"n", "x", "v" }, "<leader>Y", [["+Y]])
+--
+-- vim.keymap.set({"n", "x", "v" }, "<leader>p", [["+p]])
+-- vim.keymap.set({"n", "x", "v" }, "<leader>P", [["+P]])
 
 -- movement
 vim.keymap.set("n", "<C-d>", "<C-d>zz")

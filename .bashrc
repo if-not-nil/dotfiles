@@ -57,7 +57,7 @@ set -o vi
 
 have koghi && koghi
 
-if [[ -f ~/bin/ext/ble.sh/ble.sh ]]; then
-  source -- ~/bin/ext/ble.sh/ble.sh --attach=none
-  [[ ! ${BLE_VERSION-} ]] || ble-attach
-fi
+# if [[ -f ~/bin/ext/ble.sh/ble.sh ]]; then
+#   source -- ~/bin/ext/ble.sh/ble.sh --attach=none
+#   [[ ! ${BLE_VERSION-} ]] || ble-attach
+# fi

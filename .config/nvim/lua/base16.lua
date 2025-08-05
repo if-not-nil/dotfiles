@@ -1,5 +1,5 @@
 return { -- just <C-v>15jep
-    base00 = "#181818",
+    base00 = "#101010",
     base01 = "#202020",
     base02 = "#2b2b2b",
     base03 = "#505050",
