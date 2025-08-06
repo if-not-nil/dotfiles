@@ -1,7 +1,7 @@
 PROMPT="%B%F{yellow}%~%f%b ζ "
 alias zreload="source ~/.zshrc"
 
-FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+# FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 
 zmodload zsh/complist
 autoload -U compinit && compinit
@@ -88,7 +88,7 @@ bindkey -M viins '\e' cancel-completion
 bindkey -M emacs '\e' cancel-completion   
 
 # = plugins =
-source ~/.zsh/syntax-highlighting/zsh-syntax-highlighting.zsh
+# source ~/.zsh/syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.zsh/vi-mode/zsh-vi-mode.plugin.zsh
 ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
 source ~/.zsh/autosuggestions/zsh-autosuggestions.zsh
